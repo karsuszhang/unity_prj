@@ -8,57 +8,66 @@ SceneSettings:
   m_PVSPortalsArray: []
   m_OcclusionBakeSettings:
     smallestOccluder: 5
-    smallestHole: .25
+    smallestHole: 0.25
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
   m_Fog: 0
-  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: .00999999978
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientSkyColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_AmbientEquatorColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_AmbientGroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 0}
-  m_HaloStrength: .5
+  m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
-  m_SpotCookie: {fileID: 0}
-  m_ObjectHideFlags: 0
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  m_LightProbes: {fileID: 0}
-  m_Lightmaps: []
+  serializedVersion: 6
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
-  m_BakedColorSpace: 0
-  m_UseDualLightmapsInForward: 0
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_TemporalCoherenceThreshold: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    m_Resolution: 50
-    m_LastUsedResolution: 0
+    serializedVersion: 3
+    m_Resolution: 1
+    m_BakeResolution: 50
     m_TextureWidth: 1024
     m_TextureHeight: 1024
-    m_BounceBoost: 1
-    m_BounceIntensity: 1
-    m_SkyLightColor: {r: .860000014, g: .930000007, b: 1, a: 1}
-    m_SkyLightIntensity: 0
-    m_Quality: 0
-    m_Bounces: 1
-    m_FinalGatherRays: 1000
-    m_FinalGatherContrastThreshold: .0500000007
-    m_FinalGatherGradientThreshold: 0
-    m_FinalGatherInterpolationPoints: 15
-    m_AOAmount: 0
-    m_AOMaxDistance: .100000001
-    m_AOContrast: 1
-    m_LODSurfaceMappingDistance: 1
-    m_Padding: 0
+    m_AOMaxDistance: 1
+    m_Padding: 2
+    m_CompAOExponent: 0
+    m_LightmapParameters: {fileID: 0}
     m_TextureCompression: 0
-    m_LockAtlas: 0
+    m_FinalGather: 0
+    m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
+  m_LightingDataAsset: {fileID: 0}
+  m_RuntimeCPUUsage: 25
 --- !u!1 &10
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,10 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 20}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -390,8 +399,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 10}
-  m_LocalRotation: {x: 0, y: .156250998, z: 0, w: -.98771739}
-  m_LocalPosition: {x: .98158133, y: -.101615429, z: 0}
+  m_LocalRotation: {x: 0, y: 0.156251, z: 0, w: -0.9877174}
+  m_LocalPosition: {x: 0.98158133, y: -0.10161543, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 62}
@@ -459,7 +468,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 26}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 188.238007, z: 0}
+  m_LocalPosition: {x: 7, y: 188.238, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 57}
@@ -477,7 +486,7 @@ Transform:
   m_Children:
   - {fileID: 630868857}
   m_Father: {fileID: 848388263}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &62
 Transform:
   m_ObjectHideFlags: 0
@@ -496,8 +505,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 31}
-  m_LocalRotation: {x: -.239740312, y: .393474638, z: -.549979687, w: .696580708}
-  m_LocalPosition: {x: .0133390427, y: .657945633, z: -2.61647081}
+  m_LocalRotation: {x: -0.23974031, y: 0.39347464, z: -0.5499797, w: 0.6965807}
+  m_LocalPosition: {x: 0.013339043, y: 0.65794563, z: -2.6164708}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -534,7 +543,7 @@ Transform:
   m_GameObject: {fileID: 35}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00222222228, y: .00222222228, z: .00222222228}
+  m_LocalScale: {x: 0.0022222223, y: 0.0022222223, z: 0.0022222223}
   m_Children:
   - {fileID: 66}
   - {fileID: 848388263}
@@ -549,8 +558,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 36}
-  m_LocalRotation: {x: .336706638, y: 0, z: 0, w: .941609681}
-  m_LocalPosition: {x: 0, y: 1.8911494, z: -2.58972359}
+  m_LocalRotation: {x: 0.33670664, y: 0, z: 0, w: 0.9416097}
+  m_LocalPosition: {x: 0, y: 1.8911494, z: -2.5897236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -564,7 +573,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 3
-  m_BackGroundColor: {r: .5, g: .5, b: .5, a: 1}
+  m_BackGroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -583,10 +592,12 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!20 &70
 Camera:
   m_ObjectHideFlags: 0
@@ -596,14 +607,14 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .298507452, g: .298507452, b: .298507452, a: 1}
+  m_BackGroundColor: {r: 0.29850745, g: 0.29850745, b: 0.29850745, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 45
   orthographic: 0
@@ -615,12 +626,14 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!23 &71
-Renderer:
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -628,15 +641,21 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 2100000, guid: c91d13dd6a85732418472200f4abc68c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!33 &72
@@ -679,10 +698,10 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 31}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .5
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -690,22 +709,20 @@ Light:
     m_Type: 0
     m_Resolution: -1
     m_Strength: 1
-    m_Bias: .0500000007
-    m_Softness: 4
-    m_SoftnessFade: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 1
-  m_ShadowSamples: 1
+  m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
 --- !u!124 &83
 Behaviour:
@@ -725,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6484591c9cb0e409f5c53c6978a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationsPerSecond: {x: 0, y: .00999999978, z: 0}
+  rotationsPerSecond: {x: 0, y: 0.01, z: 0}
   ignoreTimeScale: 0
 --- !u!114 &90
 MonoBehaviour:
@@ -748,11 +765,11 @@ MonoBehaviour:
     absolute: 576
   bottomAnchor:
     target: {fileID: 67}
-    relative: .5
+    relative: 0.5
     absolute: -201
   topAnchor:
     target: {fileID: 67}
-    relative: .5
+    relative: 0.5
     absolute: 199
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -763,7 +780,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.08500004
+  aspectRatio: 1.085
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -797,12 +814,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 1
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .679104447, g: .679104447, b: .679104447, a: 1}
+  mGradientBottom: {r: 0.67910445, g: 0.67910445, b: 0.67910445, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -820,7 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: .5
+  speed: 0.5
 --- !u!114 &98
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,7 +987,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .168750003
+  aspectRatio: 0.16875
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1023,6 +1041,7 @@ MonoBehaviour:
   submitKey1: 330
   cancelKey0: 27
   cancelKey1: 331
+  autoHideCursor: 1
 --- !u!114 &114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,6 +1082,7 @@ MonoBehaviour:
   submitKey1: 330
   cancelKey0: 27
   cancelKey1: 331
+  autoHideCursor: 1
 --- !u!114 &115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,7 +1192,7 @@ MonoBehaviour:
   mClipSoftness: {x: 1, y: 10}
   mDepth: 3
   mSortingOrder: 0
-  mClipOffset: {x: 0, y: 21.7619934}
+  mClipOffset: {x: 0, y: 21.761993}
 --- !u!114 &120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1220,19 +1240,21 @@ MonoBehaviour:
   mClipOffset: {x: 0, y: 0}
 --- !u!196 &121
 NavMeshSettings:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    agentRadius: .5
+    serializedVersion: 2
+    agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: .400000006
+    agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    widthInaccuracy: 16.666666
-    heightInaccuracy: 10
-  m_NavMesh: {fileID: 0}
+    cellSize: 0.16666666
+    manualCellSize: 0
+  m_NavMeshData: {fileID: 0}
 --- !u!54 &122
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1242,7 +1264,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -1257,7 +1279,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -1272,7 +1294,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -1520,10 +1542,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 227252772}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -1669,10 +1691,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 297538260}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -1723,8 +1745,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16, y: 767.675659, z: 0}
-  m_Center: {x: 0, y: -.0626678467, z: 0}
+  m_Size: {x: 16, y: 767.67566, z: 0}
+  m_Center: {x: 0, y: -0.06266785, z: 0}
 --- !u!114 &306477866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,10 +1760,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 306477862}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -1788,7 +1810,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .020833334
+  aspectRatio: 0.020833334
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -2100,7 +2122,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .138601035
+  aspectRatio: 0.13860103
   mType: 2
   mFillDirection: 4
   mFillAmount: 1
@@ -2178,7 +2200,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .138601035
+  aspectRatio: 0.13860103
   mType: 2
   mFillDirection: 4
   mFillAmount: 1
@@ -2328,10 +2350,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 650606776}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -2370,8 +2392,8 @@ Transform:
   m_LocalPosition: {x: 690, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1675588937}
   - {fileID: 1761466419}
+  - {fileID: 1675588937}
   - {fileID: 1607436410}
   m_Father: {fileID: 67}
   m_RootOrder: 2
@@ -2423,7 +2445,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .135000005
+  aspectRatio: 0.135
 --- !u!114 &710038381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2585,10 +2607,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 722266121}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -2734,10 +2756,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 760194420}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -2883,10 +2905,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 818940270}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -2980,8 +3002,8 @@ Transform:
   m_LocalPosition: {x: -800, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1706457510}
   - {fileID: 61}
+  - {fileID: 1706457510}
   - {fileID: 58}
   m_Father: {fileID: 67}
   m_RootOrder: 1
@@ -3021,7 +3043,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .135000005
+  aspectRatio: 0.135
 --- !u!65 &848388265
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3195,10 +3217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 856643762}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -3441,7 +3463,6 @@ Prefab:
   m_ParentPrefab: {fileID: 100100000, guid: df7390d50d06a4b4b893085286142266, type: 2}
   m_RootGameObject: {fileID: 1706457509}
   m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &1051339805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3812,10 +3833,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1325024848}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -3961,10 +3982,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1327411864}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -4207,7 +4228,6 @@ Prefab:
   m_ParentPrefab: {fileID: 100100000, guid: df7390d50d06a4b4b893085286142266, type: 2}
   m_RootGameObject: {fileID: 1675588936}
   m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &1561226280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4338,7 +4358,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1607436409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 188.238007, z: 0}
+  m_LocalPosition: {x: 7, y: 188.238, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 830441778}
@@ -4353,7 +4373,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -4427,11 +4447,11 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 50.000061, y: -209, z: 102, w: 774}
+  mClipRange: {x: 50.00006, y: -209, z: 102, w: 774}
   mClipSoftness: {x: 1, y: 10}
   mDepth: 4
   mSortingOrder: 0
-  mClipOffset: {x: 0, y: 21.7619934}
+  mClipOffset: {x: 0, y: 21.761993}
 --- !u!1 &1675588936
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,7 +4484,7 @@ Transform:
   - {fileID: 2069478557}
   - {fileID: 1561226281}
   m_Father: {fileID: 710038378}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!65 &1675588938
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4476,7 +4496,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 26, y: 778, z: 0}
+  m_Size: {x: 26, y: 423, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1675588939
 MonoBehaviour:
@@ -4510,12 +4530,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 26
-  mHeight: 778
+  mHeight: 423
   mDepth: 0
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .0614657216
+  aspectRatio: 0.06146572
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -4542,10 +4562,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1675588936}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .5, g: .5, b: .5, a: 1}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   disabledColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: .200000003
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -4570,7 +4590,7 @@ MonoBehaviour:
   thumb: {fileID: 0}
   mBG: {fileID: 1675588939}
   mFG: {fileID: 2069478560}
-  mValue: .693259537
+  mValue: 0.69325954
   mFill: 3
   numberOfSteps: 0
   onChange: []
@@ -4578,8 +4598,8 @@ MonoBehaviour:
   rawValue: 1
   direction: 2
   mInverted: 0
-  mSize: .999572217
-  mScroll: .600000024
+  mSize: 0.9995722
+  mScroll: 0.6
   mDir: 2
 --- !u!1 &1706457509
 GameObject:
@@ -4613,7 +4633,7 @@ Transform:
   - {fileID: 306477863}
   - {fileID: 1727460118}
   m_Father: {fileID: 848388263}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!65 &1706457511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4625,7 +4645,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 26, y: 778, z: 0}
+  m_Size: {x: 26, y: 423, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1706457512
 MonoBehaviour:
@@ -4640,10 +4660,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1706457509}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .5, g: .5, b: .5, a: 1}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   disabledColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: .200000003
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -4685,12 +4705,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 26
-  mHeight: 778
+  mHeight: 423
   mDepth: 0
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .0614657216
+  aspectRatio: 0.06146572
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -4719,7 +4739,7 @@ MonoBehaviour:
   thumb: {fileID: 0}
   mBG: {fileID: 1706457513}
   mFG: {fileID: 306477867}
-  mValue: .693259537
+  mValue: 0.69325954
   mFill: 3
   numberOfSteps: 0
   onChange: []
@@ -4727,8 +4747,8 @@ MonoBehaviour:
   rawValue: 1
   direction: 2
   mInverted: 0
-  mSize: .999572217
-  mScroll: .600000024
+  mSize: 0.9995722
+  mScroll: 0.6
   mDir: 2
 --- !u!1 &1727460117
 GameObject:
@@ -4785,7 +4805,7 @@ Transform:
   m_Children:
   - {fileID: 612554921}
   m_Father: {fileID: 710038378}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!114 &1761466420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4822,7 +4842,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .168750003
+  aspectRatio: 0.16875
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -4972,10 +4992,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1771743970}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -5121,10 +5141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1958127439}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -5175,8 +5195,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16, y: 767.675659, z: 0}
-  m_Center: {x: 0, y: -.0626678467, z: 0}
+  m_Size: {x: 16, y: 767.67566, z: 0}
+  m_Center: {x: 0, y: -0.06266785, z: 0}
 --- !u!114 &2069478560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5214,7 +5234,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .020833334
+  aspectRatio: 0.020833334
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -5241,10 +5261,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 2069478556}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 

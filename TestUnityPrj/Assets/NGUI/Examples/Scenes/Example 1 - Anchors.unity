@@ -8,57 +8,66 @@ SceneSettings:
   m_PVSPortalsArray: []
   m_OcclusionBakeSettings:
     smallestOccluder: 5
-    smallestHole: .25
+    smallestHole: 0.25
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
   m_Fog: 0
-  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: .00999999978
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientSkyColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_AmbientEquatorColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_AmbientGroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 0}
-  m_HaloStrength: .5
+  m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
-  m_SpotCookie: {fileID: 0}
-  m_ObjectHideFlags: 0
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  m_LightProbes: {fileID: 0}
-  m_Lightmaps: []
+  serializedVersion: 6
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
-  m_BakedColorSpace: 0
-  m_UseDualLightmapsInForward: 0
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_TemporalCoherenceThreshold: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    m_Resolution: 50
-    m_LastUsedResolution: 0
+    serializedVersion: 3
+    m_Resolution: 1
+    m_BakeResolution: 50
     m_TextureWidth: 1024
     m_TextureHeight: 1024
-    m_BounceBoost: 1
-    m_BounceIntensity: 1
-    m_SkyLightColor: {r: .860000014, g: .930000007, b: 1, a: 1}
-    m_SkyLightIntensity: 0
-    m_Quality: 0
-    m_Bounces: 1
-    m_FinalGatherRays: 1000
-    m_FinalGatherContrastThreshold: .0500000007
-    m_FinalGatherGradientThreshold: 0
-    m_FinalGatherInterpolationPoints: 15
-    m_AOAmount: 0
-    m_AOMaxDistance: .100000001
-    m_AOContrast: 1
-    m_LODSurfaceMappingDistance: 1
-    m_Padding: 0
+    m_AOMaxDistance: 1
+    m_Padding: 2
+    m_CompAOExponent: 0
+    m_LightmapParameters: {fileID: 0}
     m_TextureCompression: 0
-    m_LockAtlas: 0
+    m_FinalGather: 0
+    m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
+  m_LightingDataAsset: {fileID: 0}
+  m_RuntimeCPUUsage: 25
 --- !u!1 &5
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 35}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00222222228, y: .00222222228, z: .00222222228}
+  m_LocalScale: {x: 0.0022222223, y: 0.0022222223, z: 0.0022222223}
   m_Children:
   - {fileID: 79}
   - {fileID: 805691306}
@@ -358,7 +367,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .5, g: .5, b: .5, a: 1}
+  m_BackGroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -377,10 +386,12 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!81 &92
 AudioListener:
   m_ObjectHideFlags: 0
@@ -416,7 +427,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: .172549024}
+  mColor: {r: 1, g: 1, b: 1, a: 0.17254902}
   mPivot: 0
   mWidth: 1600
   mHeight: 900
@@ -424,7 +435,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.72068965
+  aspectRatio: 1.7777778
   mType: 2
   mFillDirection: 4
   mFillAmount: 1
@@ -466,7 +477,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .194029868, g: .194029868, b: .194029868, a: 1}
+  mColor: {r: 0.19402987, g: 0.19402987, b: 0.19402987, a: 1}
   mPivot: 4
   mWidth: 72
   mHeight: 20
@@ -474,7 +485,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.5999999
+  aspectRatio: 3.6
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -492,12 +503,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .5, g: .5, b: .5, a: 1}
+  mGradientBottom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -539,7 +551,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.57142854
+  aspectRatio: 2.5714285
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -593,6 +605,7 @@ MonoBehaviour:
   submitKey1: 330
   cancelKey0: 27
   cancelKey1: 331
+  autoHideCursor: 1
 --- !u!114 &121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +642,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.33333337
+  aspectRatio: 1.3333334
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -679,7 +692,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.34722221
+  aspectRatio: 1.3472222
   mType: 2
   mFillDirection: 4
   mFillAmount: 1
@@ -729,7 +742,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.37037039
+  aspectRatio: 1.3703704
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -772,19 +785,20 @@ MonoBehaviour:
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
-  mEffectColor: {r: 0, g: 0, b: 0, a: .376470596}
+  mEffectColor: {r: 0, g: 0, b: 0, a: 0.3764706}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
   mOverflow: 0
   mMaterial: {fileID: 0}
   mApplyGradient: 0
-  mGradientTop: {r: .664179087, g: .664179087, b: .664179087, a: 1}
-  mGradientBottom: {r: .962686539, g: .962686539, b: .962686539, a: 1}
+  mGradientTop: {r: 0.6641791, g: 0.6641791, b: 0.6641791, a: 1}
+  mGradientBottom: {r: 0.96268654, g: 0.96268654, b: 0.96268654, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -837,19 +851,21 @@ MonoBehaviour:
   mClipOffset: {x: 0, y: 0}
 --- !u!196 &129
 NavMeshSettings:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    agentRadius: .5
+    serializedVersion: 2
+    agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: .400000006
+    agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    widthInaccuracy: 16.666666
-    heightInaccuracy: 10
-  m_NavMesh: {fileID: 0}
+    cellSize: 0.16666666
+    manualCellSize: 0
+  m_NavMeshData: {fileID: 0}
 --- !u!54 &130
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -859,7 +875,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -930,7 +946,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.57142854
+  aspectRatio: 2.5714285
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1009,7 +1025,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.57142854
+  aspectRatio: 2.5714285
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1073,11 +1089,11 @@ MonoBehaviour:
     absolute: 180
   bottomAnchor:
     target: {fileID: 78}
-    relative: .5
+    relative: 0.5
     absolute: -35
   topAnchor:
     target: {fileID: 78}
-    relative: .5
+    relative: 0.5
     absolute: 35
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1088,7 +1104,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.57142854
+  aspectRatio: 2.5714285
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1158,7 +1174,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .194029868, g: .194029868, b: .194029868, a: 1}
+  mColor: {r: 0.19402987, g: 0.19402987, b: 0.19402987, a: 1}
   mPivot: 4
   mWidth: 46
   mHeight: 20
@@ -1166,7 +1182,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.29999995
+  aspectRatio: 2.3
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -1184,12 +1200,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .5, g: .5, b: .5, a: 1}
+  mGradientBottom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -1237,11 +1254,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftAnchor:
     target: {fileID: 78}
-    relative: .5
+    relative: 0.5
     absolute: -90
   rightAnchor:
     target: {fileID: 78}
-    relative: .5
+    relative: 0.5
     absolute: 90
   bottomAnchor:
     target: {fileID: 78}
@@ -1260,7 +1277,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.57142854
+  aspectRatio: 2.5714285
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1298,7 +1315,7 @@ Transform:
   m_GameObject: {fileID: 805691305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 415, z: 0}
-  m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
+  m_LocalScale: {x: 1.00008, y: 1.00008, z: 1.00008}
   m_Children:
   - {fileID: 1728592130}
   m_Father: {fileID: 78}
@@ -1316,11 +1333,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftAnchor:
     target: {fileID: 78}
-    relative: .5
+    relative: 0.5
     absolute: -90
   rightAnchor:
     target: {fileID: 78}
-    relative: .5
+    relative: 0.5
     absolute: 90
   bottomAnchor:
     target: {fileID: 78}
@@ -1339,7 +1356,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.57142854
+  aspectRatio: 2.5714285
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1377,7 +1394,7 @@ Transform:
   m_GameObject: {fileID: 985872075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 710, y: 0, z: 0}
-  m_LocalScale: {x: 1.00007999, y: 1.00007999, z: 1.00007999}
+  m_LocalScale: {x: 1.00008, y: 1.00008, z: 1.00008}
   m_Children:
   - {fileID: 480628900}
   m_Father: {fileID: 78}
@@ -1403,11 +1420,11 @@ MonoBehaviour:
     absolute: 0
   bottomAnchor:
     target: {fileID: 78}
-    relative: .5
+    relative: 0.5
     absolute: -35
   topAnchor:
     target: {fileID: 78}
-    relative: .5
+    relative: 0.5
     absolute: 35
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1418,7 +1435,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.57142854
+  aspectRatio: 2.5714285
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1488,7 +1505,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .194029868, g: .194029868, b: .194029868, a: 1}
+  mColor: {r: 0.19402987, g: 0.19402987, b: 0.19402987, a: 1}
   mPivot: 4
   mWidth: 84
   mHeight: 20
@@ -1496,7 +1513,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.19999981
+  aspectRatio: 4.2
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -1514,12 +1531,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .5, g: .5, b: .5, a: 1}
+  mGradientBottom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -1581,7 +1599,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .194029868, g: .194029868, b: .194029868, a: 1}
+  mColor: {r: 0.19402987, g: 0.19402987, b: 0.19402987, a: 1}
   mPivot: 4
   mWidth: 104
   mHeight: 20
@@ -1589,7 +1607,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.19999981
+  aspectRatio: 5.2
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -1607,12 +1625,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .5, g: .5, b: .5, a: 1}
+  mGradientBottom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -1674,7 +1693,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .194029868, g: .194029868, b: .194029868, a: 1}
+  mColor: {r: 0.19402987, g: 0.19402987, b: 0.19402987, a: 1}
   mPivot: 4
   mWidth: 116
   mHeight: 20
@@ -1682,7 +1701,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.80000019
+  aspectRatio: 5.8
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -1700,12 +1719,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .5, g: .5, b: .5, a: 1}
+  mGradientBottom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -1776,7 +1796,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.57142854
+  aspectRatio: 2.5714285
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1846,7 +1866,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .194029868, g: .194029868, b: .194029868, a: 1}
+  mColor: {r: 0.19402987, g: 0.19402987, b: 0.19402987, a: 1}
   mPivot: 4
   mWidth: 34
   mHeight: 20
@@ -1854,7 +1874,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.70000005
+  aspectRatio: 1.7
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -1872,12 +1892,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .5, g: .5, b: .5, a: 1}
+  mGradientBottom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -1939,7 +1960,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .194029868, g: .194029868, b: .194029868, a: 1}
+  mColor: {r: 0.19402987, g: 0.19402987, b: 0.19402987, a: 1}
   mPivot: 4
   mWidth: 34
   mHeight: 20
@@ -1947,7 +1968,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.70000005
+  aspectRatio: 1.7
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -1965,12 +1986,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .5, g: .5, b: .5, a: 1}
+  mGradientBottom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0
@@ -2032,7 +2054,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .194029868, g: .194029868, b: .194029868, a: 1}
+  mColor: {r: 0.19402987, g: 0.19402987, b: 0.19402987, a: 1}
   mPivot: 4
   mWidth: 64
   mHeight: 20
@@ -2040,7 +2062,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.20000005
+  aspectRatio: 3.2
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -2058,12 +2080,13 @@ MonoBehaviour:
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .5, g: .5, b: .5, a: 1}
+  mGradientBottom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0
+  mOverflowEllipsis: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
   mMaxLineHeight: 0

@@ -21,7 +21,7 @@ namespace CommonUtil
 	public class CommonLogger{
 		const string PreFix = "[CommonLogZyf] ";
 		const int MaxLogRecord = 100;
-		public static bool ShowLogOnScreen = true;
+		public static bool ShowLogOnScreen = false;
 		public static event OnNewLog NewLogEvent;
 
 		public static Queue<LogRecord> s_Records = new Queue<LogRecord> ();
