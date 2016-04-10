@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InGameLogic;
 
-public class UnitObject : MonoBehaviour {
+public class UnitObject{
 
-	// Use this for initialization
-	void Start () {
-	
+	protected BattleUnit m_BattleUnit;
+	public UnitObject()
+	{
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public virtual void Init(BattleUnit bu)
+	{
+		m_BattleUnit = bu;
+	}
+
+	public virtual void Update()
+	{
 	}
 }

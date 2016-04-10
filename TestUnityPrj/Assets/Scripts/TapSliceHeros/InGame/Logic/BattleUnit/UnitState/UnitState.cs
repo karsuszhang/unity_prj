@@ -32,5 +32,26 @@ namespace InGameLogic
 		{
 			m_Unit.LeaveState (Type);
 		}
+
+		public static UnitState CreateState(UnitStateType type, BattleUnit bu)
+		{
+			UnitState ret = null;
+			switch (type) {
+			case UnitStateType.Idle:
+				ret = new UnitStateIdle (bu);
+				break;
+			case UnitStateType.Attack:
+				ret = new UnitStateAttack (bu);
+				break;
+			case UnitStateType.Rest:
+				ret = new UnitStateRest (bu);
+				break;
+			case UnitStateType.Empowering:
+				ret = new UnitStateEmpower (bu);
+				break;
+			}
+
+			return ret;
+		}
 	}
 }

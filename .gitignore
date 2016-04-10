@@ -7,3 +7,5 @@ TestUnityPrj/TestUnityPrj.sln
 *.csproj
 
 TestUnityPrj/TestUnityPrj.userprefs
+
+TestUnityPrj/obj/*
