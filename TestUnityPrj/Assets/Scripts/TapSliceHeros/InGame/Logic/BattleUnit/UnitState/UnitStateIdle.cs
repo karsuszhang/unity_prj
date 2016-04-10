@@ -20,7 +20,10 @@ namespace InGameLogic
 		{
 			base.Update ();
 			m_StateTime += LogicGame.LogicFrameTimeInSec;
-			if (m_StateTime >= m_Unit.OrgData.idle_time)
+			bool has_target = (m_Unit.IsPlayerSide && m_Unit.Game.Enemies.Count > 0) ||
+			                  (!m_Unit.IsPlayerSide && m_Unit.Game.Heros.Count > 0);
+			
+			if (m_StateTime >= m_Unit.OrgData.idle_time && has_target)
 				#if UNITY_5
 				m_Unit.GoToState (UnitStateType.Empowering);
 				#else

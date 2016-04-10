@@ -22,5 +22,15 @@ namespace InGameLogic
 					i++;
 			}
 		}
+
+		public void AddDamage(Damage d)
+		{
+			if (m_Damages.Contains (d)) {
+				CommonUtil.CommonLogger.LogError ("Add an exist damage");
+				return;
+			}
+
+			m_Damages.Add (d);
+		}
 	}
 }

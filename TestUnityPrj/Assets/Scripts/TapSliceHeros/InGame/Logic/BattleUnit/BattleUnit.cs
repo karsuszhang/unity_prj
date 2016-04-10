@@ -6,6 +6,8 @@ namespace InGameLogic
 {
 	public delegate void OnUnitStateEnter(UnitStateType type);
 	public delegate void OnUnitStateLeave(UnitStateType type);
+	public delegate void OnUnitHPChanged(int change);
+	public delegate void OnUnitDead();
 
 	public class UnitData
 	{
@@ -13,6 +15,10 @@ namespace InGameLogic
 		public float idle_time;
 		public float empower_time;
 		public float attack_time;
+
+		public int max_hp;
+		public int hp_recover_rate_per_second = 10;
+		public int attack_power;
 	}
 
 	public class BattleUnit 
@@ -20,15 +26,56 @@ namespace InGameLogic
 		protected LogicGame m_Game = null;
 		protected UnitData m_OrgData;
 
-		public bool IsDead = false;
+		public LogicGame Game { get { return m_Game; } }
+		public bool IsDead
+		{
+			get{ return _isDead; }
+			set {
+				_isDead = value;
+				if (value) {
+					m_Game.UnitDead (this);
+					if (EventUnitDead != null)
+						EventUnitDead ();
+				}
+			}
+		}
+		private bool _isDead = false;
 		public bool IsPlayerSide = true;
 
 		public UnitState CurState { get { return m_CurState; } }
 		public UnitData OrgData { get { return m_OrgData; } }
 
+		public bool CanDamage
+		{
+			get {
+				if (IsPlayerSide)
+					return (m_CurState != null && m_CurState.Type != UnitStateType.Rest);
+				else
+					return !IsDead;
+			}
+		}
+
+		#region RuntimeData
+		public int HP 
+		{ 
+			get { return _hp; }
+			protected set {
+				int diff = _hp - value;
+				_hp = System.Math.Max (System.Math.Min (OrgData.max_hp, value), 0);
+
+				if (EventHPChanged != null)
+					EventHPChanged (diff);
+			}
+		}
+		private int _hp;
+		#endregion
+
+		//event for client obj
 		#region Event2Outside
-		public event OnUnitStateEnter EventStateEnter;
-		public event OnUnitStateLeave EventStateLeave;
+		public event OnUnitStateEnter	EventStateEnter;
+		public event OnUnitStateLeave	EventStateLeave;
+		public event OnUnitHPChanged	EventHPChanged;
+		public event OnUnitDead EventUnitDead;
 		#endregion
 
 		#region State
@@ -47,12 +94,14 @@ namespace InGameLogic
 			IsPlayerSide = is_player_side;
 
 			InitStates ();
+			InitStartData ();
 		}
 
 		public void Update()
 		{
 			if (m_CurState != null)
 				m_CurState.Update ();
+
 		}
 
 		public void EnterState(UnitStateType type)
@@ -91,6 +140,33 @@ namespace InGameLogic
 			m_States [UnitStateType.Empowering] = UnitState.CreateState (UnitStateType.Empowering, this);
 		
 			GoToState (UnitStateType.Idle);
+		}
+
+		void InitStartData()
+		{
+			HP = OrgData.max_hp;
+		}
+
+		public void OnDamage(int damage, BattleUnit attacker)
+		{
+			if (!CanDamage)
+				return;
+
+			CommonLogger.Log (string.Format ("Unit {0} receive damage {1} from Unit {2}", OrgData.unit_id, damage, attacker.OrgData.unit_id));
+			HP -= damage;
+
+			if (HP == 0) {
+				if (!IsPlayerSide)
+					IsDead = true;
+				else
+					GoToState (UnitStateType.Rest);
+			}
+
+		}
+
+		public void Heal(int hp)
+		{
+			HP += hp;
 		}
 	}
 }
