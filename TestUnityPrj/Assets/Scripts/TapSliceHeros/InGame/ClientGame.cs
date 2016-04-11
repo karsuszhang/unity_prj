@@ -5,6 +5,7 @@ using CommonUtil;
 
 public class ClientGame : MonoBehaviour 
 {
+	
 	LogicGame m_Game;
 	InputMng m_InputMng = new InputMng();
 
@@ -12,12 +13,20 @@ public class ClientGame : MonoBehaviour
 	void Start () {
 		InitLogicGame ();
 		InitClientObj ();
+
+		m_InputMng.AddHandler (OnInput);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		m_InputMng.Update ();
 		m_Game.Update (MathTool.Second2MilliSec(Time.deltaTime));
 	
+	}
+
+	void OnDestory()
+	{
+		m_InputMng.Release ();
 	}
 
 	void InitLogicGame()
@@ -51,5 +60,23 @@ public class ClientGame : MonoBehaviour
 
 	void InitClientObj()
 	{
+	}
+
+	bool OnInput(InputOnce input)
+	{
+		if (input.type == InputType.Tap) {
+			CommonLogger.Log ("Tap");
+		}
+
+		if (input.type == InputType.Slice) {
+			if((input.second_point - input.tap_point).magnitude >= 20)
+			{
+				CommonLogger.Log("Slice");
+				if(input.slice_cb != null)
+					input.slice_cb();
+				return true;
+			}
+		}
+		return false;
 	}
 }
