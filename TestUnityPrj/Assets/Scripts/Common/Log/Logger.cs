@@ -21,7 +21,7 @@ namespace CommonUtil
 	public class CommonLogger{
 		const string PreFix = "[CommonLogZyf] ";
 		const int MaxLogRecord = 100;
-		public static bool ShowLogOnScreen = false;
+		public static bool ShowLogOnScreen = true;
 		public static event OnNewLog NewLogEvent;
 
 		public static Queue<LogRecord> s_Records = new Queue<LogRecord> ();
@@ -68,17 +68,10 @@ namespace CommonUtil
 			if (!ShowLogOnScreen)
 				return;
 
-			GameObject ui_root = GameObject.Find ("UI Root");
-			if (ui_root != null) {
-				if (ui_root.GetComponentInChildren<ScreenLog> () == null) {
-					GameObject sl = GameObject.Instantiate(Resources.Load ("UI/OnScreenLogger") as GameObject);
-					Vector3 pos = sl.transform.localPosition;
-					Vector3 scale = sl.transform.localScale;
-					sl.transform.parent = ui_root.transform.FindChild ("MainPanel");
-					sl.transform.localPosition = pos;
-					sl.transform.localScale = scale;
-				}
+			if (UIManager.Instance.GetComponentInChildren<ScreenLog> () == null) {
+				UIManager.Instance.AddUI ("UI/OnScreenLogger");
 			}
+
 		}
 	}
 }

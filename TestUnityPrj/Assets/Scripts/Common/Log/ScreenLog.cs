@@ -14,7 +14,7 @@ public class ScreenLog : MonoBehaviour {
 		CommonUtil.CommonLogger.NewLogEvent += this.LogIncoming;
 	}
 
-	void OnDestory()
+	void OnDestroy()
 	{
 		CommonUtil.CommonLogger.NewLogEvent -= LogIncoming;
 	}
