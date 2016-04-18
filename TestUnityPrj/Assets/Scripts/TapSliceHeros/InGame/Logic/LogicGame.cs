@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace InGameLogic
 {
-	public class GameData
+	public class LogicGameData
 	{
 		public List<UnitData> Heroes = new List<UnitData>();
 		public List<UnitData> Monsters = new List<UnitData>();
@@ -31,7 +31,7 @@ namespace InGameLogic
 		{
 		}
 
-		public void Init(GameData data)
+		public void Init(LogicGameData data)
 		{
 			foreach (UnitData u in data.Heroes) {
 				BattleUnit bu = new BattleUnit (this);

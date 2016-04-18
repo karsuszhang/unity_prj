@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Root>
+	<Heroes>
+		<Hero>
+			<logic_id>1</logic_id>
+			<res>res_1</res>
+		</Hero>
+	</Heroes>
+	<Monsters>
+		<Monster>
+			<logic_id>1001</logic_id>
+			<res>res_1001</res>
+		</Monster>
+	</Monsters>
+</Root>

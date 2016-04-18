@@ -31,31 +31,26 @@ public class ClientGame : MonoBehaviour
 
 	void InitLogicGame()
 	{
+		Test ();
 		m_Game = new LogicGame ();
-		GameData data = new GameData ();
-		FillTestData (data);
+		LogicGameData data = new LogicGameData ();
+		FillLogicData (data);
 		m_Game.Init (data);
 	}
 
-	void FillTestData(GameData d)
+	void Test()
 	{
-		UnitData ud = new UnitData ();
-		ud.attack_time = 1.5f;
-		ud.empower_time = 2f;
-		ud.idle_time = 2f;
-		ud.unit_id = 1;
-		ud.max_hp = 100;
-		ud.attack_power = 5;
-		d.Heroes.Add (ud);
+		GameData.CurHeroes.Add (1);
+		GameData.CurMonsters.Add (1001);
+	}
 
-		ud = new UnitData ();
-		ud.attack_time = 1.5f;
-		ud.empower_time = 2f;
-		ud.idle_time = 2f;
-		ud.unit_id = 1001;
-		ud.max_hp = 50;
-		ud.attack_power = 20;
-		d.Monsters.Add (ud);
+	void FillLogicData(LogicGameData d)
+	{
+		foreach(int id in GameData.CurHeroes)
+			d.Heroes.Add (ConfigMng.Instance.GetConfig<LogicHeroCfg>().GetHeroData(id).ToUnitData());
+
+		foreach(int id in GameData.CurMonsters)
+			d.Monsters.Add (ConfigMng.Instance.GetConfig<LogicHeroCfg>().GetHeroData(id).ToUnitData());
 	}
 
 	void InitClientObj()

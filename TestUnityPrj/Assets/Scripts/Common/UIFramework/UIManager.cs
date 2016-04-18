@@ -9,8 +9,8 @@ namespace CommonUtil
 		{
 			get {
 				if (_instance == null) {
-					GameObject go = ResourceMng.Instance.GetResource ("UI/UI Root", ResourceType.UI) as GameObject;
-					//_instance = go.GetComponent<UIManager> ();
+					ResourceMng.Instance.GetResource ("UI/UI Root", ResourceType.UI);
+
 				}
 
 				return _instance;
