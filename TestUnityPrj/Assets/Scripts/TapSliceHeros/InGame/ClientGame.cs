@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using InGameLogic;
 using CommonUtil;
 
@@ -8,6 +9,8 @@ public class ClientGame : MonoBehaviour
 	
 	LogicGame m_Game;
 	InputMng m_InputMng = new InputMng();
+	List<UnitObject> m_ClientObjects = new List<UnitObject>();
+	Dictionary<StandPos, int> m_StandPos = new Dictionary<StandPos, int>();
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +25,9 @@ public class ClientGame : MonoBehaviour
 		m_InputMng.Update ();
 		m_Game.Update (MathTool.Second2MilliSec(Time.deltaTime));
 	
+		foreach (UnitObject uo in m_ClientObjects) {
+			uo.Update ();
+		}
 	}
 
 	void OnDestory()
@@ -55,6 +61,17 @@ public class ClientGame : MonoBehaviour
 
 	void InitClientObj()
 	{
+		foreach (BattleUnit bu in m_Game.Heros) {
+			UnitObject uo = new UnitObject ();
+			uo.Init (bu);
+			m_ClientObjects.Add (uo);
+		}
+
+		foreach (BattleUnit bu in m_Game.Enemies) {
+			UnitObject uo = new UnitObject ();
+			uo.Init (bu);
+			m_ClientObjects.Add (uo);
+		}
 	}
 
 	bool OnInput(InputOnce input)
@@ -73,5 +90,27 @@ public class ClientGame : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	public void RegStandPos(StandPos p)
+	{
+		if (p != null && !m_StandPos.ContainsKey (p))
+			m_StandPos [p] = -1;
+	}
+
+	public StandPos FindEmptyPos(StandType t)
+	{
+		foreach (var obj in m_StandPos) {
+			if (obj.Value < 0 && obj.Key.Type == t)
+				return obj.Key;
+		}
+
+		return null;
+	}
+
+	public void OccupyStandPos(StandPos p, int id)
+	{
+		if(m_StandPos.ContainsKey(p))
+			m_StandPos[p] = id;
 	}
 }

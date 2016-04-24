@@ -45,7 +45,7 @@ public class ClientHeroCfg : ConfigBase
 			XmlNode root = doc.LastChild;
 			foreach(XmlNode tag in root.ChildNodes)
 			{
-				if(tag.InnerText == "Heroes")
+				if(tag.Name == "Heroes")
 				{
 					foreach(XmlNode h in tag.ChildNodes)
 					{
@@ -55,7 +55,7 @@ public class ClientHeroCfg : ConfigBase
 						HeroClientData[hd.logic_id] = hd;
 					}
 				}
-				else if(tag.InnerText == "Monsters")
+				else if(tag.Name == "Monsters")
 				{
 					foreach(XmlNode h in tag.ChildNodes)
 					{

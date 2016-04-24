@@ -9,6 +9,7 @@ public class LogicHeroData
 	public float idle_time;
 	public float empower_time;
 	public float attack_time;
+	public float attack_point;
 	public int max_hp;
 	public int hp_recover_rate;
 	public int attack_power;
@@ -23,6 +24,7 @@ public class LogicHeroData
 		ud.max_hp = max_hp;
 		ud.hp_recover_rate_per_second = hp_recover_rate;
 		ud.attack_power = attack_power;
+		ud.attack_point = attack_point;
 
 		return ud;
 	}
@@ -73,6 +75,10 @@ public class LogicHeroCfg : ConfigBase
 					else if(attr.Name == "attack_time")
 					{
 						hd.attack_time = float.Parse(attr.InnerText);
+					}
+					else if(attr.Name == "attack_point")
+					{
+						hd.attack_point = float.Parse(attr.InnerText);
 					}
 					else if(attr.Name == "max_hp")
 					{

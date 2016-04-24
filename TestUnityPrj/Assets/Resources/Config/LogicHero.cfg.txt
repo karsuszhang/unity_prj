@@ -5,15 +5,17 @@
 		<idle_time>1.5</idle_time>
 		<empower_time>2</empower_time>
 		<attack_time>2</attack_time>
+		<attack_point>0.6</attack_point>
 		<max_hp>100</max_hp>
 		<hp_recover>10</hp_recover>
 		<attack_power>5</attack_power>
 	</Hero>
 	<Hero>
 		<id>1001</id>
-		<idle_time>1.5</idle_time>
-		<empower_time>2</empower_time>
+		<idle_time>15000</idle_time>
+		<empower_time>5</empower_time>
 		<attack_time>2</attack_time>
+		<attack_point>0.16</attack_point>
 		<max_hp>50</max_hp>
 		<hp_recover>10</hp_recover>
 		<attack_power>20</attack_power>

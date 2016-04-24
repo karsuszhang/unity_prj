@@ -15,6 +15,7 @@ namespace InGameLogic
 		public float idle_time;
 		public float empower_time;
 		public float attack_time;
+		public float attack_point;
 
 		public int max_hp;
 		public int hp_recover_rate_per_second = 10;
@@ -42,6 +43,7 @@ namespace InGameLogic
 		private bool _isDead = false;
 		public bool IsPlayerSide = true;
 
+		public int ID {get{ return OrgData.unit_id; }}
 		public UnitState CurState { get { return m_CurState; } }
 		public UnitData OrgData { get { return m_OrgData; } }
 
@@ -60,7 +62,7 @@ namespace InGameLogic
 		{ 
 			get { return _hp; }
 			protected set {
-				int diff = _hp - value;
+				int diff = value - _hp;
 				_hp = System.Math.Max (System.Math.Min (OrgData.max_hp, value), 0);
 
 				if (EventHPChanged != null)
@@ -109,7 +111,7 @@ namespace InGameLogic
 			if (EventStateEnter != null)
 				EventStateEnter (type);
 
-			CommonLogger.Log(string.Format("Unit {0} enter state {1}", OrgData.unit_id, type.ToString()));
+			//CommonLogger.Log(string.Format("Unit {0} enter state {1}", OrgData.unit_id, type.ToString()));
 		}
 
 		public void LeaveState(UnitStateType type)

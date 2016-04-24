@@ -3,13 +3,13 @@
 	<Heroes>
 		<Hero>
 			<logic_id>1</logic_id>
-			<res>res_1</res>
+			<res>Model/NPC_Builder1</res>
 		</Hero>
 	</Heroes>
 	<Monsters>
 		<Monster>
 			<logic_id>1001</logic_id>
-			<res>res_1001</res>
+			<res>Model/Warlord</res>
 		</Monster>
 	</Monsters>
 </Root>
