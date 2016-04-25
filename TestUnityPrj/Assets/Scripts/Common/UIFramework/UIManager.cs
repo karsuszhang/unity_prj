@@ -35,6 +35,8 @@ namespace CommonUtil
 
 		public Camera MainCamera;
 
+		public MainCamera MainCameraHolder;
+
 		void Awake()
 		{
 			_Awake ();

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using InGameLogic;
 using CommonUtil;
 
@@ -10,6 +11,10 @@ public class UnitObject{
 	protected Animator m_AniCtrl = null;
 
 	private int m_FrameBloodChange = 0;
+
+	protected List<TapTaper> m_Taps = new List<TapTaper> ();
+	protected int m_TapedCount = 0;
+
 	public UnitObject()
 	{
 	}
@@ -39,6 +44,9 @@ public class UnitObject{
 			m_ModelObj.transform.localRotation = p.transform.localRotation;
 			GameHelper.Game.OccupyStandPos (p, bu.OrgData.unit_id);
 		}
+
+		m_Taps = new List<TapTaper>(m_ModelObj.GetComponentsInChildren<TapTaper> ());
+		EnableTaps (false);
 	}
 
 	public virtual void Update()
@@ -74,6 +82,7 @@ public class UnitObject{
 			switch (type) {
 			case UnitStateType.Empowering:
 				m_AniCtrl.SetTrigger ("Empower");
+				EnableTaps (true);
 				break;
 			case UnitStateType.Attack:
 				m_AniCtrl.SetTrigger ("Attack");
@@ -91,6 +100,9 @@ public class UnitObject{
 			switch (type) {
 			case UnitStateType.Rest:
 				m_AniCtrl.SetTrigger ("Idle");
+				break;
+			case UnitStateType.Empowering:
+				EnableTaps (false);
 				break;
 			}
 		}
@@ -131,6 +143,26 @@ public class UnitObject{
 			}
 				
 			m_FrameBloodChange = 0;
+		}
+	}
+
+	void EnableTaps(bool enable)
+	{
+		foreach (TapTaper tt in m_Taps) {
+			tt.gameObject.SetActive (enable);
+			if (enable)
+				tt.TapOKCB = this.OnTapFull;
+			else
+				tt.TapOKCB = null;
+		}
+		m_TapedCount = 0;
+	}
+
+	void OnTapFull(TapTaper t)
+	{
+		m_TapedCount++;
+		if (m_TapedCount >= m_Taps.Count) {
+			CommonLogger.Log ("Empower Full");
 		}
 	}
 }

@@ -12,6 +12,7 @@ public class ClientGame : MonoBehaviour
 	List<UnitObject> m_ClientObjects = new List<UnitObject>();
 	Dictionary<StandPos, int> m_StandPos = new Dictionary<StandPos, int>();
 
+	List<TapTaper> m_RegTaps = new List<TapTaper>();
 	// Use this for initialization
 	void Start () {
 		InitLogicGame ();
@@ -77,7 +78,10 @@ public class ClientGame : MonoBehaviour
 	bool OnInput(InputOnce input)
 	{
 		if (input.type == InputType.Tap) {
-			CommonLogger.Log ("Tap");
+			//CommonLogger.Log ("Tap");
+			foreach (TapTaper t in m_RegTaps) {
+				t.TapInput (input);
+			}
 		}
 
 		if (input.type == InputType.Slice) {
@@ -112,5 +116,18 @@ public class ClientGame : MonoBehaviour
 	{
 		if(m_StandPos.ContainsKey(p))
 			m_StandPos[p] = id;
+	}
+
+	public void RegTapReceiver(TapTaper tap)
+	{
+		if (m_RegTaps.Contains (tap))
+			return;
+
+		m_RegTaps.Add (tap);
+	}
+
+	public void UnRegTapReceiver(TapTaper tap)
+	{
+		m_RegTaps.Remove (tap);
 	}
 }
