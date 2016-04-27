@@ -154,7 +154,7 @@ namespace InGameLogic
 			if (!CanDamage)
 				return;
 
-			CommonLogger.Log (string.Format ("Unit {0} receive damage {1} from Unit {2}", OrgData.unit_id, damage, attacker.OrgData.unit_id));
+			CommonLogger.Log (string.Format ("Unit {0} receive damage {1} from Unit {2}", OrgData.unit_id, damage, attacker != null ? attacker.OrgData.unit_id.ToString() : "PlayerHand"));
 			HP -= damage;
 
 			if (HP == 0) {
@@ -169,6 +169,14 @@ namespace InGameLogic
 		public void Heal(int hp)
 		{
 			HP += hp;
+		}
+
+		public void EmpowerOK()
+		{
+			if (CurState.Type == UnitStateType.Empowering) {
+				UnitStateEmpower ue = CurState as UnitStateEmpower;
+				ue.EmpowerDone = true;
+			}
 		}
 	}
 }

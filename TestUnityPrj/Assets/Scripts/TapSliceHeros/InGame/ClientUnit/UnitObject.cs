@@ -6,6 +6,11 @@ using CommonUtil;
 
 public class UnitObject{
 
+	public BattleUnit LogicUnit
+	{
+		get{ return m_BattleUnit; }
+	}
+
 	protected BattleUnit m_BattleUnit;
 	protected GameObject m_ModelObj = null;
 	protected Animator m_AniCtrl = null;
@@ -46,6 +51,9 @@ public class UnitObject{
 		}
 
 		m_Taps = new List<TapTaper>(m_ModelObj.GetComponentsInChildren<TapTaper> ());
+		foreach (TapTaper t in m_Taps) {
+			t.Init (this);
+		}
 		EnableTaps (false);
 	}
 
@@ -90,6 +98,9 @@ public class UnitObject{
 			case UnitStateType.Rest:
 				m_AniCtrl.SetTrigger ("Rest");
 				break;
+			case UnitStateType.Idle:
+				m_AniCtrl.SetTrigger ("Idle");
+				break;
 			}
 		}
 	}
@@ -98,11 +109,18 @@ public class UnitObject{
 	{
 		if (m_AniCtrl != null) {
 			switch (type) {
-			case UnitStateType.Rest:
-				m_AniCtrl.SetTrigger ("Idle");
-				break;
 			case UnitStateType.Empowering:
+				m_AniCtrl.ResetTrigger ("Empower");
 				EnableTaps (false);
+				break;
+			case UnitStateType.Attack:
+				m_AniCtrl.ResetTrigger ("Attack");
+				break;
+			case UnitStateType.Rest:
+				m_AniCtrl.ResetTrigger ("Rest");
+				break;
+			case UnitStateType.Idle:
+				m_AniCtrl.ResetTrigger ("Idle");
 				break;
 			}
 		}
@@ -159,10 +177,11 @@ public class UnitObject{
 	}
 
 	void OnTapFull(TapTaper t)
-	{
+	{		
 		m_TapedCount++;
 		if (m_TapedCount >= m_Taps.Count) {
 			CommonLogger.Log ("Empower Full");
+			m_BattleUnit.EmpowerOK ();
 		}
 	}
 }

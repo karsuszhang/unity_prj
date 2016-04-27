@@ -6,7 +6,7 @@ using CommonUtil;
 
 public class ClientGame : MonoBehaviour 
 {
-	
+
 	LogicGame m_Game;
 	InputMng m_InputMng = new InputMng();
 	List<UnitObject> m_ClientObjects = new List<UnitObject>();
@@ -43,6 +43,7 @@ public class ClientGame : MonoBehaviour
 		LogicGameData data = new LogicGameData ();
 		FillLogicData (data);
 		m_Game.Init (data);
+
 	}
 
 	void Test()
@@ -129,5 +130,10 @@ public class ClientGame : MonoBehaviour
 	public void UnRegTapReceiver(TapTaper tap)
 	{
 		m_RegTaps.Remove (tap);
+	}
+
+	public int GetTapDamage()
+	{
+		return 5;
 	}
 }

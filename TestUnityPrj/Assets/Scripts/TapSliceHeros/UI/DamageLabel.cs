@@ -25,7 +25,7 @@ public class DamageLabel : MonoBehaviour
 	}
 	// Use this for initialization
 	void Start () {
-		Debug.Log (this.transform.position);
+		//Debug.Log (this.transform.position);
 	}
 
 	public void Reposition(Vector3 pos)
