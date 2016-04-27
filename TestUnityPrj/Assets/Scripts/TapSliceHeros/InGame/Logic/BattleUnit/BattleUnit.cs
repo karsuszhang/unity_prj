@@ -47,6 +47,8 @@ namespace InGameLogic
 		public UnitState CurState { get { return m_CurState; } }
 		public UnitData OrgData { get { return m_OrgData; } }
 
+		internal bool NextAttackEmpower = false;
+
 		public bool CanDamage
 		{
 			get {

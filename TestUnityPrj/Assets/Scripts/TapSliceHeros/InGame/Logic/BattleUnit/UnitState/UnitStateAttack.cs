@@ -17,8 +17,12 @@ namespace InGameLogic
 			base.EnterState ();
 			m_StateTime = 0f;
 			attacked = false;
+		}
 
-
+		public override void LeaveState ()
+		{
+			base.LeaveState ();
+			m_Unit.NextAttackEmpower = false;
 		}
 
 		public override void Update ()
@@ -31,6 +35,9 @@ namespace InGameLogic
 				if (target != null) {
 					DamageData data = new DamageData ();
 					data.damage = m_Unit.OrgData.attack_power;
+					if (m_Unit.IsPlayerSide && m_Unit.NextAttackEmpower)
+						data.damage *= 10;
+					
 					Damage d = new Damage (this.m_Unit, target, data, false);
 					m_Unit.Game.DamageManager.AddDamage (d);
 
