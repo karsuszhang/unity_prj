@@ -36,6 +36,8 @@ public class TapTaper : MonoBehaviour {
 	{
 		GameHelper.Game.RegTapReceiver (this);
 		m_TapCount = 0;
+		if (GetComponent<MeshRenderer> () != null)
+			GetComponent<MeshRenderer> ().enabled = true;
 	}
 
 	void OnDisable()
@@ -48,8 +50,11 @@ public class TapTaper : MonoBehaviour {
 	{
 		if (Type == TapType.Empower) {
 			m_TapCount++;
-			if (m_TapCount >= TapOkCount && TapOKCB != null)
+			if (m_TapCount >= TapOkCount && TapOKCB != null) {
 				TapOKCB (this);
+				if (GetComponent<MeshRenderer> () != null)
+					GetComponent<MeshRenderer> ().enabled = false;
+			}
 		} else if (Type == TapType.Hurt) {
 			if (m_Unit == null) {
 				CommonUtil.CommonLogger.LogError ("Taper " + this.gameObject.name + " has no UnitObj");

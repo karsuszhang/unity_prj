@@ -154,7 +154,7 @@ namespace InGameLogic
 			if (!CanDamage)
 				return;
 
-			CommonLogger.Log (string.Format ("Unit {0} receive damage {1} from Unit {2}", OrgData.unit_id, damage, attacker != null ? attacker.OrgData.unit_id.ToString() : "PlayerHand"));
+			//CommonLogger.Log (string.Format ("Unit {0} receive damage {1} from Unit {2}", OrgData.unit_id, damage, attacker != null ? attacker.OrgData.unit_id.ToString() : "PlayerHand"));
 			HP -= damage;
 
 			if (HP == 0) {

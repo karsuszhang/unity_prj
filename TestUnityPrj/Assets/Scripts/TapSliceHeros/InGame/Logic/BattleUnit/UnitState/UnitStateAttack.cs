@@ -34,7 +34,7 @@ namespace InGameLogic
 					Damage d = new Damage (this.m_Unit, target, data, false);
 					m_Unit.Game.DamageManager.AddDamage (d);
 
-					CommonUtil.CommonLogger.Log ("Attack Time " + m_StateTime);
+					//CommonUtil.CommonLogger.Log ("Attack Time " + m_StateTime);
 				}
 				attacked = true;
 			}

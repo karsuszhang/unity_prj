@@ -19,6 +19,7 @@ public class UnitObject{
 
 	protected List<TapTaper> m_Taps = new List<TapTaper> ();
 	protected int m_TapedCount = 0;
+	protected int m_EmpowerTapCount = 0;
 
 	public UnitObject()
 	{
@@ -53,6 +54,8 @@ public class UnitObject{
 		m_Taps = new List<TapTaper>(m_ModelObj.GetComponentsInChildren<TapTaper> ());
 		foreach (TapTaper t in m_Taps) {
 			t.Init (this);
+			if(t.Type == TapType.Empower)
+				m_EmpowerTapCount++;
 		}
 		EnableTaps (false);
 	}
@@ -178,9 +181,10 @@ public class UnitObject{
 
 	void OnTapFull(TapTaper t)
 	{		
+		//CommonLogger.Log ("Taper " + t.name + " ok ");
 		m_TapedCount++;
-		if (m_TapedCount >= m_Taps.Count) {
-			CommonLogger.Log ("Empower Full");
+		if (m_TapedCount >= m_EmpowerTapCount) {
+			//CommonLogger.Log ("Empower Full");
 			m_BattleUnit.EmpowerOK ();
 		}
 	}
