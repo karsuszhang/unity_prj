@@ -21,6 +21,7 @@ public class UnitObject{
 	protected int m_TapedCount = 0;
 	protected int m_EmpowerTapCount = 0;
 
+	protected BloodBar m_BloodBar = null;
 	public UnitObject()
 	{
 	}
@@ -58,12 +59,16 @@ public class UnitObject{
 				m_EmpowerTapCount++;
 		}
 		EnableTaps (false);
+
+		m_BloodBar = (UIManager.Instance.AddUI ("UI/BloodBar") as GameObject).GetComponent<BloodBar>();
+		UpdateBloodBarPos ();
 	}
 
 	public virtual void Update()
 	{
 
 		ShowBloodChange ();
+		UpdateBloodBarPos ();
 	}
 
 	public void Release()
@@ -132,19 +137,17 @@ public class UnitObject{
 	void OnHPChanged(int changed)
 	{
 		m_FrameBloodChange += changed;
+
+		if (m_BloodBar != null) {
+			m_BloodBar.Value = m_BattleUnit.HP / (float)m_BattleUnit.OrgData.max_hp;
+		}
 	}
 
 	void ShowBloodChange()
 	{
 		if (m_FrameBloodChange != 0) {
-			BloodPoint bp = m_ModelObj.GetComponentInChildren<BloodPoint> ();
-			if (bp == null) {
-				CommonUtil.CommonLogger.LogError (string.Format ("Model {0} has no BloodPoint", m_ModelObj.name));
-				m_FrameBloodChange = 0;
-				return;
-			}
-
-			Vector3 new_pos = UIManager.Instance.GetScreenPos (bp.transform.position);
+			
+			Vector3 new_pos = GetBloodPointPos();
 			GameObject label = null;
 			if (m_FrameBloodChange > 0) {
 				
@@ -187,5 +190,27 @@ public class UnitObject{
 			//CommonLogger.Log ("Empower Full");
 			m_BattleUnit.EmpowerOK ();
 		}
+	}
+
+	Vector3 GetBloodPointPos()
+	{
+		BloodPoint bp = m_ModelObj.GetComponentInChildren<BloodPoint> ();
+		if (bp == null) {
+			CommonUtil.CommonLogger.LogError (string.Format ("Model {0} has no BloodPoint", m_ModelObj.name));
+			m_FrameBloodChange = 0;
+			return Vector3.zero;
+		}
+
+		Vector3 new_pos = UIManager.Instance.GetScreenPos (bp.transform.position);
+
+		return new_pos;
+	}
+
+	void UpdateBloodBarPos()
+	{
+		if (m_BloodBar == null)
+			return;
+
+		m_BloodBar.gameObject.transform.localPosition = GetBloodPointPos ();
 	}
 }

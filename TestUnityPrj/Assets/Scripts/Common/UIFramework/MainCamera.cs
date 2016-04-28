@@ -5,10 +5,14 @@ namespace CommonUtil
 {
 	public class MainCamera : MonoBehaviour {
 
-		// Use this for initialization
-		void Start () {
+		void Awake()
+		{
 			UIManager.Instance.MainCamera = this.gameObject.GetComponent<Camera>();
 			UIManager.Instance.MainCameraHolder = this;
+		}
+		// Use this for initialization
+		void Start () {
+			
 		}
 		
 		// Update is called once per frame
