@@ -180,5 +180,16 @@ namespace InGameLogic
 				ue.EmpowerDone = true;
 			}
 		}
+
+		public BattleUnit FindTarget()
+		{
+			List<BattleUnit> targets = this.IsPlayerSide ? this.Game.Enemies : this.Game.Heros;
+			foreach (BattleUnit bu in targets) {
+				if (bu.CanDamage)
+					return bu;
+			}
+
+			return null;
+		}
 	}
 }

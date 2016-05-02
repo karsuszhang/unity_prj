@@ -11,6 +11,8 @@ public class UnitObject{
 		get{ return m_BattleUnit; }
 	}
 
+	public bool ReleaseInstantly = false;
+
 	protected BattleUnit m_BattleUnit;
 	protected GameObject m_ModelObj = null;
 	protected Animator m_AniCtrl = null;
@@ -22,6 +24,10 @@ public class UnitObject{
 	protected int m_EmpowerTapCount = 0;
 
 	protected BloodBar m_BloodBar = null;
+
+	protected float m_DeadTimeCount = 0f;
+
+	protected StandPos m_StandPos = null;
 	public UnitObject()
 	{
 	}
@@ -50,6 +56,7 @@ public class UnitObject{
 			m_ModelObj.transform.position = p.transform.position;
 			m_ModelObj.transform.localRotation = p.transform.localRotation;
 			GameHelper.Game.OccupyStandPos (p, bu.OrgData.unit_id);
+			m_StandPos = p;
 		}
 
 		m_Taps = new List<TapTaper>(m_ModelObj.GetComponentsInChildren<TapTaper> ());
@@ -69,6 +76,12 @@ public class UnitObject{
 
 		ShowBloodChange ();
 		UpdateBloodBarPos ();
+		if (m_BattleUnit.IsDead) {
+			m_DeadTimeCount += Time.deltaTime;
+			if (m_DeadTimeCount >= LogicGame.AddMonsterWaitTime) {
+				ReleaseInstantly = true;
+			}
+		}
 	}
 
 	public void Release()
@@ -76,6 +89,8 @@ public class UnitObject{
 		UnRegEvent ();
 		if (m_ModelObj != null)
 			GameObject.Destroy (m_ModelObj);
+		if (m_BloodBar != null)
+			GameObject.Destroy (m_BloodBar.gameObject);
 	}
 
 	void RegEvent()
@@ -83,6 +98,7 @@ public class UnitObject{
 		m_BattleUnit.EventStateEnter += OnStateEnter;
 		m_BattleUnit.EventStateLeave += OnStateLeave;
 		m_BattleUnit.EventHPChanged += OnHPChanged;
+		m_BattleUnit.EventUnitDead += OnUnitDead;
 	}
 
 	void UnRegEvent()
@@ -90,6 +106,7 @@ public class UnitObject{
 		m_BattleUnit.EventStateEnter -= OnStateEnter;
 		m_BattleUnit.EventStateLeave -= OnStateLeave;
 		m_BattleUnit.EventHPChanged -= OnHPChanged;
+		m_BattleUnit.EventUnitDead -= OnUnitDead;
 	}
 
 	void OnStateEnter(UnitStateType type)
@@ -190,6 +207,13 @@ public class UnitObject{
 			//CommonLogger.Log ("Empower Full");
 			m_BattleUnit.EmpowerOK ();
 		}
+	}
+
+	void OnUnitDead()
+	{
+		CommonLogger.Log (m_ModelObj.name + " Dead");
+		m_AniCtrl.SetTrigger ("Dead");
+		GameHelper.Game.ReleaseStandPos (this.m_StandPos);
 	}
 
 	Vector3 GetBloodPointPos()

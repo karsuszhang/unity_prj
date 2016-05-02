@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace InGameLogic
 {
+	public delegate UnitData GetNewMonsterData();
+	public delegate void OnNewMonsterAdd(BattleUnit bu);
+
 	public class LogicGameData
 	{
 		public List<UnitData> Heroes = new List<UnitData>();
@@ -15,18 +18,24 @@ namespace InGameLogic
 		public const float LogicFrameTimeInSec = LogicFrameTimeInMs / 1000f;
 		public const int LogicFrameCountPerSecond = 1000 / LogicFrameTimeInMs;
 
+		public const float AddMonsterWaitTime = 2f;
+
 		private int m_LastMs = 0;
 		private ulong m_TotalFrameCount = 0;
+		private float m_NewMonsterTimeCount = 0f;
 
 		public ulong CurLogicFrameCount{ get { return m_TotalFrameCount; } }
 		public List<BattleUnit> Heros { get { return m_Heros; } }
 		public List<BattleUnit> Enemies { get { return m_Enemies; } }
 		public DamageMng DamageManager { get { return m_DamageMng; } }
+		public GetNewMonsterData AddMonsterDataHandler = null;
+		public event OnNewMonsterAdd EventNewMonsterAdd;
 
 		protected List<BattleUnit> m_Heros = new List<BattleUnit> ();
 		protected List<BattleUnit> m_Enemies = new List<BattleUnit> ();
 
 		protected DamageMng m_DamageMng = new DamageMng ();
+
 		public LogicGame()
 		{
 		}
@@ -77,13 +86,28 @@ namespace InGameLogic
 					i++;
 			}
 
-			if (m_Enemies.Count == 0)
-				AddEnemy ();
+			if (m_Enemies.Count == 0) {
+				m_NewMonsterTimeCount += LogicFrameTimeInSec;
+				if (m_NewMonsterTimeCount >= AddMonsterWaitTime)
+					AddEnemy ();
+			}
 				
 		}
 
 		void AddEnemy()
 		{
+			m_NewMonsterTimeCount = 0f;
+			if (AddMonsterDataHandler == null) {
+				CommonUtil.CommonLogger.LogWarning ("No AddEnemy Handler");
+				return;
+			}
+
+			UnitData ud = AddMonsterDataHandler ();
+			BattleUnit bu = new BattleUnit (this);
+			bu.Init (ud, false);
+			Enemies.Add (bu);
+			if (EventNewMonsterAdd != null)
+				EventNewMonsterAdd (bu);
 		}
 
 		public void UnitDead(BattleUnit u)

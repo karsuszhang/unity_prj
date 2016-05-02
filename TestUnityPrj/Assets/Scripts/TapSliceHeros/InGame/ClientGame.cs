@@ -13,6 +13,10 @@ public class ClientGame : MonoBehaviour
 	Dictionary<StandPos, int> m_StandPos = new Dictionary<StandPos, int>();
 
 	List<TapTaper> m_RegTaps = new List<TapTaper>();
+
+	List<UnitObject> m_DeadObjs = new List<UnitObject> ();
+
+	int m_MonsterCount = 0;
 	// Use this for initialization
 	void Start () {
 		InitLogicGame ();
@@ -26,9 +30,19 @@ public class ClientGame : MonoBehaviour
 		m_InputMng.Update ();
 		m_Game.Update (MathTool.Second2MilliSec(Time.deltaTime));
 	
+
 		foreach (UnitObject uo in m_ClientObjects) {
 			uo.Update ();
+			if (uo.ReleaseInstantly)
+				m_DeadObjs.Add (uo);
 		}
+
+		foreach (UnitObject du in m_DeadObjs) {
+			m_ClientObjects.Remove (du);
+			du.Release ();
+		}
+
+		m_DeadObjs.Clear ();
 	}
 
 	void OnDestory()
@@ -44,6 +58,8 @@ public class ClientGame : MonoBehaviour
 		FillLogicData (data);
 		m_Game.Init (data);
 
+		m_Game.AddMonsterDataHandler = this.GetNewMonster;
+		m_Game.EventNewMonsterAdd += this.OnNewMonsterAdd;
 	}
 
 	void Test()
@@ -119,6 +135,13 @@ public class ClientGame : MonoBehaviour
 			m_StandPos[p] = id;
 	}
 
+	public void ReleaseStandPos(StandPos p)
+	{
+		if (m_StandPos.ContainsKey (p)) {
+			m_StandPos [p] = -1;
+		}
+	}
+
 	public void RegTapReceiver(TapTaper tap)
 	{
 		if (m_RegTaps.Contains (tap))
@@ -135,5 +158,21 @@ public class ClientGame : MonoBehaviour
 	public int GetTapDamage()
 	{
 		return 5;
+	}
+
+	public UnitData GetNewMonster()
+	{
+		m_MonsterCount++;
+		UnitData data = ConfigMng.Instance.GetConfig<LogicHeroCfg> ().GetHeroData (1001).ToUnitData ();
+		data.max_hp = Mathf.CeilToInt ((1f + m_MonsterCount / 10f) * data.max_hp);
+		data.attack_power = Mathf.CeilToInt((1f + (m_MonsterCount / 20f)) * data.attack_power);
+		return data;
+	}
+
+	void OnNewMonsterAdd(BattleUnit bu)
+	{
+		UnitObject uo = new UnitObject ();
+		uo.Init (bu);
+		m_ClientObjects.Add (uo);
 	}
 }

@@ -31,7 +31,7 @@ namespace InGameLogic
 			m_StateTime += LogicGame.LogicFrameTimeInSec;
 
 			if (!attacked && m_StateTime >= m_Unit.OrgData.attack_point) {
-				BattleUnit target = FindTarget ();
+				BattleUnit target = m_Unit.FindTarget ();
 				if (target != null) {
 					DamageData data = new DamageData ();
 					data.damage = m_Unit.OrgData.attack_power;
@@ -50,15 +50,6 @@ namespace InGameLogic
 				m_Unit.GoToState (UnitStateType.Idle);
 		}
 
-		BattleUnit FindTarget()
-		{
-			List<BattleUnit> targets = m_Unit.IsPlayerSide ? m_Unit.Game.Enemies : m_Unit.Game.Heros;
-			foreach (BattleUnit bu in targets) {
-				if (bu.CanDamage)
-					return bu;
-			}
 
-			return null;
-		}
 	}
 }
