@@ -14,6 +14,7 @@ namespace InGameLogic
 		{
 			base.EnterState ();
 			frame_count = 0;
+			m_Unit.NextAttackEmpower = false;
 		}
 
 		public override void Update ()

@@ -17,11 +17,14 @@ public class ClientGame : MonoBehaviour
 	List<UnitObject> m_DeadObjs = new List<UnitObject> ();
 
 	int m_MonsterCount = 0;
+
+	TweenScale m_ComboLabel;
 	// Use this for initialization
 	void Start () {
 		InitLogicGame ();
 		InitClientObj ();
 
+		InitUI ();
 		m_InputMng.AddHandler (OnInput);
 	}
 	
@@ -60,6 +63,7 @@ public class ClientGame : MonoBehaviour
 
 		m_Game.AddMonsterDataHandler = this.GetNewMonster;
 		m_Game.EventNewMonsterAdd += this.OnNewMonsterAdd;
+		m_Game.EventOnCombo += this.OnCombo;
 	}
 
 	void Test()
@@ -90,6 +94,13 @@ public class ClientGame : MonoBehaviour
 			uo.Init (bu);
 			m_ClientObjects.Add (uo);
 		}
+	}
+
+	void InitUI()
+	{
+		m_ComboLabel = UIManager.Instance.AddUI ("UI/ComboLabel").GetComponent<TweenScale>();
+		m_ComboLabel.gameObject.SetActive (false);
+		m_ComboLabel.AddOnFinished (this.OnComboFinish);
 	}
 
 	bool OnInput(InputOnce input)
@@ -174,5 +185,20 @@ public class ClientGame : MonoBehaviour
 		UnitObject uo = new UnitObject ();
 		uo.Init (bu);
 		m_ClientObjects.Add (uo);
+	}
+
+	void OnCombo(int combo_num)
+	{
+		if (combo_num > 0) {
+			m_ComboLabel.gameObject.SetActive (true);
+			m_ComboLabel.ResetToBeginning ();
+			m_ComboLabel.PlayForward ();
+			m_ComboLabel.gameObject.GetComponent<UILabel> ().text = "Combo x " + combo_num;
+		}
+	}
+
+	void OnComboFinish()
+	{
+		m_ComboLabel.gameObject.SetActive (false);
 	}
 }

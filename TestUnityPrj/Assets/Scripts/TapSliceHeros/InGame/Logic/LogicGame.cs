@@ -5,6 +5,7 @@ namespace InGameLogic
 {
 	public delegate UnitData GetNewMonsterData();
 	public delegate void OnNewMonsterAdd(BattleUnit bu);
+	public delegate void OnCombo(int combo_num);
 
 	public class LogicGameData
 	{
@@ -23,18 +24,27 @@ namespace InGameLogic
 		private int m_LastMs = 0;
 		private ulong m_TotalFrameCount = 0;
 		private float m_NewMonsterTimeCount = 0f;
+		private int m_ComboCount = 0;
 
 		public ulong CurLogicFrameCount{ get { return m_TotalFrameCount; } }
 		public List<BattleUnit> Heros { get { return m_Heros; } }
 		public List<BattleUnit> Enemies { get { return m_Enemies; } }
 		public DamageMng DamageManager { get { return m_DamageMng; } }
+
+		#region handler_from_outside
 		public GetNewMonsterData AddMonsterDataHandler = null;
+		#endregion
+
+		#region event_for_outside
 		public event OnNewMonsterAdd EventNewMonsterAdd;
+		public event OnCombo EventOnCombo;
+		#endregion
 
 		protected List<BattleUnit> m_Heros = new List<BattleUnit> ();
 		protected List<BattleUnit> m_Enemies = new List<BattleUnit> ();
 
 		protected DamageMng m_DamageMng = new DamageMng ();
+
 
 		public LogicGame()
 		{
@@ -116,6 +126,20 @@ namespace InGameLogic
 				CommonUtil.CommonLogger.LogError ("Shouldn't be here, heroes are not support to die now!");
 			else {
 			}
+		}
+
+		public void IncreseBlockEnemy()
+		{
+			m_ComboCount++;
+			if (EventOnCombo != null)
+				EventOnCombo (m_ComboCount);
+		}
+
+		public void ResetBlockEnemy()
+		{
+			m_ComboCount = 0;
+			if (EventOnCombo != null)
+				EventOnCombo (m_ComboCount);
 		}
 	}
 }

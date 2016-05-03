@@ -13,12 +13,23 @@ public class Main : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		TestInput ();
 	}
 
 	public void OnStartButtonClicked()
 	{
 		CommonLogger.Log ("Goes To Game");
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("InGame");
+	}
+
+	void TestInput()
+	{
+		#if UNITY_EDITOR
+		if(Input.GetKeyDown(KeyCode.Space))	{
+			TweenScale ts = UIManager.Instance.Root.gameObject.transform.FindChild("ComboLabel").GetComponent<TweenScale>();
+			ts.ResetToBeginning();
+			ts.PlayForward();
+		}
+		#endif
 	}
 }

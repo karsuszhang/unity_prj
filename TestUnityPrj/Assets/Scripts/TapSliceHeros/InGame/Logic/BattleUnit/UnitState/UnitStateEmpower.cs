@@ -4,7 +4,19 @@ using System.Collections;
 namespace InGameLogic
 {
 	public class UnitStateEmpower : UnitState {
-		public bool EmpowerDone;
+		public bool EmpowerDone
+		{
+			get {
+				return _EmpowerDone;
+			}
+			set{
+				if (!_EmpowerDone && value && !m_Unit.IsPlayerSide)
+					m_Unit.Game.IncreseBlockEnemy ();
+				_EmpowerDone = value;
+				}
+		}
+
+		private bool _EmpowerDone;
 
 		float m_StateTime = 0f;
 		public UnitStateEmpower(BattleUnit bu) : base(UnitStateType.Empowering, bu)
@@ -30,10 +42,13 @@ namespace InGameLogic
 					} else
 						m_Unit.GoToState (UnitStateType.Idle);
 				} else {
-					if (EmpowerDone)
+					if (EmpowerDone) {
+						//m_Unit.Game.IncreseBlockEnemy ();
 						m_Unit.GoToState (UnitStateType.Idle);
-					else
+					} else {
+						m_Unit.Game.ResetBlockEnemy ();
 						m_Unit.GoToState (UnitStateType.Attack);
+					}
 				}
 			}
 		}
