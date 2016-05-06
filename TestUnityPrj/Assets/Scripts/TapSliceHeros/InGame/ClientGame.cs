@@ -19,6 +19,8 @@ public class ClientGame : MonoBehaviour
 	int m_MonsterCount = 0;
 
 	TweenScale m_ComboLabel;
+	GameObject m_AttUp;
+	GameObject m_MFUp;
 	// Use this for initialization
 	void Start () {
 		InitLogicGame ();
@@ -98,9 +100,15 @@ public class ClientGame : MonoBehaviour
 
 	void InitUI()
 	{
-		m_ComboLabel = UIManager.Instance.AddUI ("UI/ComboLabel").GetComponent<TweenScale>();
+		GameObject root = UIManager.Instance.AddUI ("UI/InGamePanel");	
+		m_ComboLabel = root.transform.Find ("ComboLabel").gameObject.GetComponent<TweenScale> ();
 		m_ComboLabel.gameObject.SetActive (false);
 		m_ComboLabel.AddOnFinished (this.OnComboFinish);
+
+		m_AttUp = root.transform.Find ("AttackUp").gameObject;
+		m_MFUp = root.transform.Find ("MFUp").gameObject;
+		m_AttUp.SetActive (false);
+		m_MFUp.SetActive (false);
 	}
 
 	bool OnInput(InputOnce input)
@@ -194,6 +202,14 @@ public class ClientGame : MonoBehaviour
 			m_ComboLabel.ResetToBeginning ();
 			m_ComboLabel.PlayForward ();
 			m_ComboLabel.gameObject.GetComponent<UILabel> ().text = "Combo x " + combo_num;
+			if (combo_num > 5)
+				m_AttUp.SetActive (true);
+			if (combo_num > 10)
+				m_MFUp.SetActive (true);
+			
+		} else {
+			m_AttUp.SetActive (false);
+			m_MFUp.SetActive (false);
 		}
 	}
 
