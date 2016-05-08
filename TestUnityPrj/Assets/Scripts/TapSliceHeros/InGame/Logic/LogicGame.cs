@@ -9,6 +9,7 @@ namespace InGameLogic
 
 	public class LogicGameData
 	{
+		public int RandomSeed;
 		public List<UnitData> Heroes = new List<UnitData>();
 		public List<UnitData> Monsters = new List<UnitData>();
 	}
@@ -28,8 +29,8 @@ namespace InGameLogic
 		private int m_ComboCount = 0;
 
 		public ulong CurLogicFrameCount{ get { return m_TotalFrameCount; } }
-		public List<BattleUnit> Heros { get { return m_Heros; } }
-		public List<BattleUnit> Enemies { get { return m_Enemies; } }
+		public List<BattleUnit> Heros { get { return new List<BattleUnit>(m_Heros); } }
+		public List<BattleUnit> Enemies { get { return new List<BattleUnit>(m_Enemies); } }
 		public DamageMng DamageManager { get { return m_DamageMng; } }
 
 		#region handler_from_outside
@@ -46,7 +47,7 @@ namespace InGameLogic
 
 		protected DamageMng m_DamageMng = new DamageMng ();
 
-
+		protected System.Random m_Random;
 		public LogicGame()
 		{
 		}
@@ -56,14 +57,16 @@ namespace InGameLogic
 			foreach (UnitData u in data.Heroes) {
 				BattleUnit bu = new BattleUnit (this);
 				bu.Init (u, true);
-				Heros.Add (bu);
+				m_Heros.Add (bu);
 			}
 
 			foreach (UnitData e in data.Monsters) {
 				BattleUnit bu = new BattleUnit (this);
 				bu.Init (e, false);
-				Enemies.Add (bu);
+				m_Enemies.Add (bu);
 			}
+
+			m_Random = new System.Random (data.RandomSeed);
 		}
 
 		public void Update(int time_ms)
@@ -116,7 +119,7 @@ namespace InGameLogic
 			UnitData ud = AddMonsterDataHandler ();
 			BattleUnit bu = new BattleUnit (this);
 			bu.Init (ud, false);
-			Enemies.Add (bu);
+			m_Enemies.Add (bu);
 			if (EventNewMonsterAdd != null)
 				EventNewMonsterAdd (bu);
 		}
@@ -141,6 +144,11 @@ namespace InGameLogic
 			m_ComboCount = 0;
 			if (EventOnCombo != null)
 				EventOnCombo (m_ComboCount);
+		}
+
+		public int Random(int min, int max)
+		{
+			return m_Random.Next(min, max);
 		}
 	}
 }

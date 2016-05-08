@@ -36,7 +36,7 @@ namespace InGameLogic
 			m_StateTime += LogicGame.LogicFrameTimeInSec;
 			if (m_StateTime >= m_Unit.OrgData.empower_time) {
 				if (m_Unit.IsPlayerSide) {
-					if (m_Unit.FindTarget () != null) {
+					if (m_Unit.HasTarget()){
 						m_Unit.NextAttackEmpower = EmpowerDone;
 						m_Unit.GoToState (UnitStateType.Attack);
 					} else

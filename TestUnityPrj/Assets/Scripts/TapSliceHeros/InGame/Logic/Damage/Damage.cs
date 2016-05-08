@@ -5,6 +5,7 @@ namespace InGameLogic
 {
 	public class DamageData
 	{
+		public bool IsDamage = true;
 		public int damage;
 	}
 
@@ -29,8 +30,12 @@ namespace InGameLogic
 
 		public void Update()
 		{
-			if (m_Receiver.CanDamage)
-				m_Receiver.OnDamage (m_Data.damage, m_Attacker);
+			if (m_Data.IsDamage) {
+				if (m_Receiver.CanDamage)
+					m_Receiver.OnDamage (m_Data.damage, m_Attacker);
+			} else {
+				m_Receiver.Heal (m_Data.damage);
+			}
 
 			IsOver = true;
 		}

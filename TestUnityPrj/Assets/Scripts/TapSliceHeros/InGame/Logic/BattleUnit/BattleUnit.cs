@@ -188,21 +188,20 @@ namespace InGameLogic
 			}
 		}
 
-		public BattleUnit FindTarget()
+		public bool HasTarget()
 		{
 			List<BattleUnit> targets = this.IsPlayerSide ? this.Game.Enemies : this.Game.Heros;
 			foreach (BattleUnit bu in targets) {
 				if (bu.CanDamage)
-					return bu;
+					return true;
 			}
 
-			return null;
+			return false;
 		}
 
 		public Skill ChoseSkill()
 		{
-			System.Random r = new System.Random((int)Game.CurTotalFrames);
-			int index = r.Next (0, m_Skills.Count - 1);
+			int index = Game.Random (0, m_Skills.Count - 1);
 			return m_Skills [index];
 
 		}

@@ -81,6 +81,8 @@ public class ClientGame : MonoBehaviour
 
 		foreach(int id in GameData.CurMonsters)
 			d.Monsters.Add (ConfigMng.Instance.GetConfig<LogicHeroCfg>().GetHeroData(id).ToUnitData());
+
+		d.RandomSeed = System.DateTime.Now.Millisecond;
 	}
 
 	void InitClientObj()

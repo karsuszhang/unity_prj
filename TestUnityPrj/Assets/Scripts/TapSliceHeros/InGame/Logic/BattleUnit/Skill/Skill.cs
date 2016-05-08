@@ -58,9 +58,17 @@ namespace InGameLogic
 
 		protected List<BattleUnit> FindTarget()
 		{
-			List<BattleUnit> ret = new List<BattleUnit> ();
-			ret.Add (m_Unit.FindTarget ());
-			return ret;
+			List<BattleUnit> targets = (m_Unit.IsPlayerSide && (this.m_Data.Type == SkillType.Damage)) ? m_Unit.Game.Enemies : m_Unit.Game.Heros;
+			if (this.m_Data.EnemyNum == EnemyType.All) {
+				return targets;
+			} else if (this.m_Data.EnemyNum == EnemyType.Single) {
+				List<BattleUnit> ret = new List<BattleUnit> ();
+				ret.Add (targets [m_Unit.Game.Random (0, targets.Count - 1)]);
+				return ret;
+			} else {
+				CommonLogger.LogError ("Not Implement EnemyNum:" + this.m_Data.EnemyNum.ToString ());
+				return new List<BattleUnit> ();
+			}
 		}
 
 		protected void GenDamage()
@@ -69,6 +77,7 @@ namespace InGameLogic
 			foreach (BattleUnit t in targets) {
 				DamageData dd = new DamageData ();
 				dd.damage = this.m_Data.Damage;
+				dd.IsDamage = m_Data.Type == SkillType.Damage;
 				if (m_Unit.IsPlayerSide && m_Unit.NextAttackEmpower)
 					dd.damage *= 10;
 				
