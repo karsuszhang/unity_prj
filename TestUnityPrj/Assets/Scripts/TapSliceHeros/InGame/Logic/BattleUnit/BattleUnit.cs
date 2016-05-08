@@ -15,11 +15,11 @@ namespace InGameLogic
 		public float idle_time;
 		public float empower_time;
 		public float attack_time;
-		public float attack_point;
 
 		public int max_hp;
 		public int hp_recover_rate_per_second = 10;
-		public int attack_power;
+
+		public List<SkillData> skills = new List<SkillData>();
 	}
 
 	public class BattleUnit 
@@ -48,6 +48,8 @@ namespace InGameLogic
 		public UnitData OrgData { get { return m_OrgData; } }
 
 		internal bool NextAttackEmpower = false;
+
+		private List<Skill> m_Skills = new List<Skill>();
 
 		public bool CanDamage
 		{
@@ -149,6 +151,11 @@ namespace InGameLogic
 		void InitStartData()
 		{
 			HP = OrgData.max_hp;
+			foreach (SkillData sd in OrgData.skills) {
+				Skill s = new Skill ();
+				s.Init (sd, this);
+				m_Skills.Add (s);
+			}
 		}
 
 		public void OnDamage(int damage, BattleUnit attacker)
@@ -190,6 +197,14 @@ namespace InGameLogic
 			}
 
 			return null;
+		}
+
+		public Skill ChoseSkill()
+		{
+			System.Random r = new System.Random((int)Game.CurTotalFrames);
+			int index = r.Next (0, m_Skills.Count - 1);
+			return m_Skills [index];
+
 		}
 	}
 }

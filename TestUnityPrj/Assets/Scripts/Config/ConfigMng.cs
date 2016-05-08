@@ -73,6 +73,7 @@ public class ConfigMng{
 	{
 		m_Configs [new LogicHeroCfg ()] = false;
 		m_Configs [new ClientHeroCfg ()] = false;
+		m_Configs [new LogicSkillCfg ()] = false;
 	}
 		
 	void ConfigLoadOver(bool suc, string error, ConfigBase config)
@@ -82,6 +83,9 @@ public class ConfigMng{
 		else {
 			CommonUtil.CommonLogger.LogError (string.Format ("Config {0} Init Failed:{1}", config.GetType ().ToString (), error)); 
 		}
+
+		if(!string.IsNullOrEmpty(error))
+			CommonUtil.CommonLogger.LogError (string.Format ("Config {0} Has Error:{1}", config.GetType ().ToString (), error)); 
 
 		bool all_load = IsAllConfigInitOK ();
 

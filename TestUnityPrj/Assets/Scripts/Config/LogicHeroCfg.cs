@@ -9,10 +9,9 @@ public class LogicHeroData
 	public float idle_time;
 	public float empower_time;
 	public float attack_time;
-	public float attack_point;
 	public int max_hp;
 	public int hp_recover_rate;
-	public int attack_power;
+	public List<int> skills;
 
 	public InGameLogic.UnitData ToUnitData()
 	{
@@ -23,8 +22,9 @@ public class LogicHeroData
 		ud.attack_time = attack_time;
 		ud.max_hp = max_hp;
 		ud.hp_recover_rate_per_second = hp_recover_rate;
-		ud.attack_power = attack_power;
-		ud.attack_point = attack_point;
+		foreach (int sid in skills) {
+			ud.skills.Add (ConfigMng.Instance.GetConfig<LogicSkillCfg> ().GetSkillData (sid));
+		}
 
 		return ud;
 	}
@@ -76,10 +76,6 @@ public class LogicHeroCfg : ConfigBase
 					{
 						hd.attack_time = float.Parse(attr.InnerText);
 					}
-					else if(attr.Name == "attack_point")
-					{
-						hd.attack_point = float.Parse(attr.InnerText);
-					}
 					else if(attr.Name == "max_hp")
 					{
 						hd.max_hp = int.Parse(attr.InnerText);
@@ -88,13 +84,17 @@ public class LogicHeroCfg : ConfigBase
 					{
 						hd.hp_recover_rate = int.Parse(attr.InnerText);
 					}
-					else if(attr.Name == "attack_power")
+					else if(attr.Name == "Skills")
 					{
-						hd.attack_power = int.Parse(attr.InnerText);
+						hd.skills = new List<int>();
+						foreach(XmlNode sid in attr.ChildNodes)
+						{
+							hd.skills.Add(int.Parse(sid.InnerText));
+						}
 					}
 				}
 				if(HeroLogicData.ContainsKey(hd.id))
-					m_Error += string.Format("Hero id {0} repeated ", hd.id);
+					m_Error += string.Format("Hero id {0} repeated \n", hd.id);
 
 				HeroLogicData[hd.id] = hd;
 			}

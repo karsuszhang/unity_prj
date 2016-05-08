@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Root>
+	<Skill>
+		<id>1</id>
+		<release_time>0.6</release_time>
+		<type>0</type>
+		<enemy_type>0</enemy_type>
+		<damage>5</damage>
+	</Skill>
+	<Skill>
+		<id>2</id>
+		<release_time>0.6</release_time>
+		<type>0</type>
+		<enemy_type>0</enemy_type>
+		<damage>20</damage>
+	</Skill>
+</Root>

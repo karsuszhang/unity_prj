@@ -21,6 +21,7 @@ namespace InGameLogic
 
 		public const float AddMonsterWaitTime = 2f;
 
+		public ulong CurTotalFrames{get{ return m_TotalFrameCount; }}
 		private int m_LastMs = 0;
 		private ulong m_TotalFrameCount = 0;
 		private float m_NewMonsterTimeCount = 0f;

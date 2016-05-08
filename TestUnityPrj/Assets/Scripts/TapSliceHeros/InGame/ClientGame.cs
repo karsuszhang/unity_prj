@@ -184,7 +184,7 @@ public class ClientGame : MonoBehaviour
 		m_MonsterCount++;
 		UnitData data = ConfigMng.Instance.GetConfig<LogicHeroCfg> ().GetHeroData (1001).ToUnitData ();
 		data.max_hp = Mathf.CeilToInt ((1f + m_MonsterCount / 10f) * data.max_hp);
-		data.attack_power = Mathf.CeilToInt((1f + (m_MonsterCount / 20f)) * data.attack_power);
+		//data.attack_power = Mathf.CeilToInt((1f + (m_MonsterCount / 20f)) * data.attack_power);
 		return data;
 	}
 

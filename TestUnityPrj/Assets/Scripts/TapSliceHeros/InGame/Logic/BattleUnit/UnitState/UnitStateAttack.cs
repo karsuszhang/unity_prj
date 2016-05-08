@@ -6,7 +6,7 @@ namespace InGameLogic
 	public class UnitStateAttack : UnitState{
 
 		float m_StateTime = 0f;
-		bool attacked = false;
+		Skill m_UseSkill = null;
 		public UnitStateAttack(BattleUnit bu):base(UnitStateType.Attack, bu)
 		{
 			
@@ -16,7 +16,8 @@ namespace InGameLogic
 		{
 			base.EnterState ();
 			m_StateTime = 0f;
-			attacked = false;
+			m_UseSkill = m_Unit.ChoseSkill ();
+			m_UseSkill.Begin ();
 		}
 
 		public override void LeaveState ()
@@ -30,21 +31,7 @@ namespace InGameLogic
 			base.Update ();
 			m_StateTime += LogicGame.LogicFrameTimeInSec;
 
-			if (!attacked && m_StateTime >= m_Unit.OrgData.attack_point) {
-				BattleUnit target = m_Unit.FindTarget ();
-				if (target != null) {
-					DamageData data = new DamageData ();
-					data.damage = m_Unit.OrgData.attack_power;
-					if (m_Unit.IsPlayerSide && m_Unit.NextAttackEmpower)
-						data.damage *= 10;
-					
-					Damage d = new Damage (this.m_Unit, target, data, false);
-					m_Unit.Game.DamageManager.AddDamage (d);
-
-					//CommonUtil.CommonLogger.Log ("Attack Time " + m_StateTime);
-				}
-				attacked = true;
-			}
+			m_UseSkill.Update ();
 
 			if (m_StateTime >= m_Unit.OrgData.attack_time)
 				m_Unit.GoToState (UnitStateType.Idle);
