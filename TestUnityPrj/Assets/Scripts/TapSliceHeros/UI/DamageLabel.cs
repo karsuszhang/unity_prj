@@ -25,7 +25,7 @@ public class DamageLabel : MonoBehaviour
 	}
 	// Use this for initialization
 	void Start () {
-		//Debug.Log (this.transform.position);
+		this.GetComponent<UILabel> ().depth = DynamicDepth.DepthMostFront.ToInt();
 	}
 
 	public void Reposition(Vector3 pos)

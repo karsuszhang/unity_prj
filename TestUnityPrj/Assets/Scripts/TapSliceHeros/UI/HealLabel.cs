@@ -25,7 +25,7 @@ public class HealLabel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		this.GetComponent<UILabel> ().depth = DynamicDepth.DepthMostFront.ToInt();
 	}
 
 	public void Reposition(Vector3 pos)
