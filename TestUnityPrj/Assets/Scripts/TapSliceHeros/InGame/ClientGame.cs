@@ -71,6 +71,7 @@ public class ClientGame : MonoBehaviour
 	void Test()
 	{
 		GameData.CurHeroes.Add (1);
+		GameData.CurHeroes.Add (2);
 		GameData.CurMonsters.Add (1001);
 	}
 

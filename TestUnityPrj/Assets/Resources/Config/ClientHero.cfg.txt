@@ -5,6 +5,10 @@
 			<logic_id>1</logic_id>
 			<res>Model/NPC_Builder1</res>
 		</Hero>
+		<Hero>
+			<logic_id>2</logic_id>
+			<res>Model/NPC_Female_Full</res>
+		</Hero>
 	</Heroes>
 	<Monsters>
 		<Monster>

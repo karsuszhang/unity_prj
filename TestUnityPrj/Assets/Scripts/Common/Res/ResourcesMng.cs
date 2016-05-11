@@ -48,5 +48,10 @@ namespace CommonUtil
 			}
 			return null;
 		}
+
+		public void Release(Object res)
+		{
+			Object.Destroy (res);
+		}
 	}
 }
