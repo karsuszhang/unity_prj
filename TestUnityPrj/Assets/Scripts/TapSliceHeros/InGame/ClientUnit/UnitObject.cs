@@ -4,6 +4,50 @@ using System.Collections.Generic;
 using InGameLogic;
 using CommonUtil;
 
+public delegate void OnTaperGroupDone(TaperGroup group);
+public class TaperGroup
+{
+	public OnTaperGroupDone DoneHandler;
+	public int Group;
+	public TapType Type;
+
+	List<TapTaper> m_Tapers = new List<TapTaper>();
+	int m_CurTapCount = 0;
+
+	public TaperGroup(int group_id, TapType type)
+	{
+		this.Group = group_id;
+		this.Type = type;
+	}
+
+	public void Active(bool active)
+	{
+		m_CurTapCount = 0;
+		foreach (TapTaper t in m_Tapers) {
+			t.gameObject.SetActive (active);
+			if (active)
+				t.TapOKCB = this.OnTapOK;
+			else
+				t.TapOKCB = null;
+		}
+
+		if (!active)
+			DoneHandler = null;
+	}
+
+	void OnTapOK(TapTaper tap)
+	{
+		m_CurTapCount++;
+		if (m_CurTapCount >= m_Tapers.Count && DoneHandler != null)
+			DoneHandler (this);
+	}
+
+	public void AddTaper(TapTaper t)
+	{
+		m_Tapers.Add (t);
+	}
+}
+
 public class UnitObject{
 
 	public BattleUnit LogicUnit
@@ -22,6 +66,10 @@ public class UnitObject{
 	protected List<TapTaper> m_Taps = new List<TapTaper> ();
 	protected int m_TapedCount = 0;
 	protected int m_EmpowerTapCount = 0;
+
+	protected Dictionary<TapType, List<TaperGroup>> m_TapGroup = new Dictionary<TapType, List<TaperGroup>>();
+	protected TaperGroup m_CurEmpowerGroup = null;
+	protected TaperGroup m_CurDamageGroup = null;
 
 	protected BloodBar m_BloodBar = null;
 
@@ -59,13 +107,7 @@ public class UnitObject{
 			m_StandPos = p;
 		}
 
-		m_Taps = new List<TapTaper>(m_ModelObj.GetComponentsInChildren<TapTaper> ());
-		foreach (TapTaper t in m_Taps) {
-			t.Init (this);
-			if(t.Type == TapType.Empower)
-				m_EmpowerTapCount++;
-		}
-		EnableTaps (false);
+		InitTaps ();
 
 		m_BloodBar = (UIManager.Instance.AddUI ("UI/BloodBar") as GameObject).GetComponent<BloodBar>();
 		UpdateBloodBarPos ();
@@ -187,26 +229,79 @@ public class UnitObject{
 		}
 	}
 
-	void EnableTaps(bool enable)
+	void InitTaps()
 	{
-		foreach (TapTaper tt in m_Taps) {
-			tt.gameObject.SetActive (enable);
-			if (enable)
-				tt.TapOKCB = this.OnTapFull;
-			else
-				tt.TapOKCB = null;
+		TapTaper[] taps = m_ModelObj.GetComponentsInChildren<TapTaper> ();
+		foreach (TapTaper t in taps) {
+			t.Init (this);
+			t.gameObject.SetActive (false);
+			TaperGroup tg = FindTapGroup (t.Type, t.Group);
+			if (tg != null)
+				tg.AddTaper (t);
+			else {
+				tg = new TaperGroup (t.Group, t.Type);
+				tg.AddTaper (t);
+				m_TapGroup[t.Type].Add (tg);
+			}
 		}
-		m_TapedCount = 0;
 	}
 
-	void OnTapFull(TapTaper t)
-	{		
-		//CommonLogger.Log ("Taper " + t.name + " ok ");
-		m_TapedCount++;
-		if (m_TapedCount >= m_EmpowerTapCount) {
-			//CommonLogger.Log ("Empower Full");
-			m_BattleUnit.EmpowerOK ();
+	TaperGroup FindTapGroup(TapType type, int group_id)
+	{
+		if (!m_TapGroup.ContainsKey (type)) {
+			m_TapGroup [type] = new List<TaperGroup> ();
+			return null;
 		}
+
+		foreach (TaperGroup tg in m_TapGroup[type]) {
+			if (tg.Type == type && tg.Group == group_id)
+				return tg;
+		}
+
+		return null;
+	}
+
+	void EnableTaps(bool enable)
+	{
+		if (enable) {
+			m_CurEmpowerGroup = FindAGroup (TapType.Empower);
+
+			if(!m_BattleUnit.IsPlayerSide)
+				m_CurDamageGroup = FindAGroup (TapType.Hurt);
+
+			if (m_CurDamageGroup != null)
+				m_CurDamageGroup.Active (true);
+			if (m_CurEmpowerGroup != null) {
+				m_CurEmpowerGroup.Active (true);
+				m_CurEmpowerGroup.DoneHandler = this.OnTapGroupDone;
+			}
+		} else {
+			if (m_CurDamageGroup != null)
+				m_CurDamageGroup.Active (false);
+			if (m_CurEmpowerGroup != null) {
+				m_CurEmpowerGroup.Active (false);
+				m_CurEmpowerGroup.DoneHandler = null;
+			}
+
+			m_CurDamageGroup = null;
+			m_CurEmpowerGroup = null;
+		}
+	}
+
+	TaperGroup FindAGroup(TapType type)
+	{
+		if (m_TapGroup.ContainsKey (type)) {
+			int index = Random.Range (0, m_TapGroup [type].Count);
+			return m_TapGroup [type] [index];
+		}
+
+		//CommonLogger.LogWarning (string.Format ("{0} has no {1} TapGroup", m_ModelObj.name, type.ToString ()));
+		return null;
+	}
+
+	void OnTapGroupDone(TaperGroup tg)
+	{
+		m_BattleUnit.EmpowerOK ();
 	}
 
 	void OnUnitDead()

@@ -146,9 +146,10 @@ namespace InGameLogic
 				EventOnCombo (m_ComboCount);
 		}
 
+		//inclusive min and max
 		public int Random(int min, int max)
 		{
-			return m_Random.Next(min, max);
+			return m_Random.Next(min, max + 1);
 		}
 	}
 }

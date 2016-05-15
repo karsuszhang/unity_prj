@@ -19,6 +19,8 @@ public class TapTaper : MonoBehaviour {
 	private int m_TapCount = 0;
 	private UnitObject m_Unit = null;
 	private UISprite m_TapProgress = null;
+
+	public int Group = 1;
 	// Use this for initialization
 	void Awake()
 	{
