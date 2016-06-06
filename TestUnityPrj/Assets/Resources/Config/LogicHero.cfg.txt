@@ -12,6 +12,17 @@
 		</Skills>
 	</Hero>
 	<Hero>
+		<id>2</id>
+		<idle_time>3.5</idle_time>
+		<empower_time>2</empower_time>
+		<attack_time>2</attack_time>
+		<max_hp>100</max_hp>
+		<hp_recover>10</hp_recover>
+		<Skills>
+			<Skill>3</Skill>
+		</Skills>
+	</Hero>
+	<Hero>
 		<id>1001</id>
 		<idle_time>1.5</idle_time>
 		<empower_time>5</empower_time>

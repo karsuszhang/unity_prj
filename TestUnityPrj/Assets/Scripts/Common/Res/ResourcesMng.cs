@@ -8,6 +8,7 @@ namespace CommonUtil
 		UI,
 		Model,
 		TXT,
+		Effect,
 	}
 	public class ResourceMng {
 
@@ -32,6 +33,7 @@ namespace CommonUtil
 			switch (type) {
 			case ResourceType.UI:
 			case ResourceType.Model:
+			case ResourceType.Effect:
 				{
 					GameObject o = Resources.Load (res) as GameObject;
 					if (o != null)

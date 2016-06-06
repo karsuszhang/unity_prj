@@ -22,8 +22,9 @@ namespace InGameLogic
 		public int SkillID = 0;
 		public SkillType Type = SkillType.Damage;
 		public EnemyType EnemyNum = EnemyType.Single;
-		public int Damage = 0;
 		public float ReleaseTime = 0f;
+
+		public DamageData DamageData;
 	}
 	public class Skill{
 
@@ -74,14 +75,8 @@ namespace InGameLogic
 		protected void GenDamage()
 		{
 			List<BattleUnit> targets = FindTarget ();
-			foreach (BattleUnit t in targets) {
-				DamageData dd = new DamageData ();
-				dd.damage = this.m_Data.Damage;
-				dd.IsDamage = m_Data.Type == SkillType.Damage;
-				if (m_Unit.IsPlayerSide && m_Unit.NextAttackEmpower)
-					dd.damage *= 10;
-				
-				Damage d = new Damage (m_Unit, t, dd, m_Unit.NextAttackEmpower);
+			foreach (BattleUnit t in targets) {				
+				Damage d = new Damage (m_Unit, t, m_Data.DamageData, m_Unit.IsPlayerSide && m_Unit.NextAttackEmpower);
 				m_Unit.Game.DamageManager.AddDamage (d);
 			}
 

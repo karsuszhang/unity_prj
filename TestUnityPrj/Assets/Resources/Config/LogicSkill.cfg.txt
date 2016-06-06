@@ -13,5 +13,15 @@
 		<type>0</type>
 		<enemy_type>0</enemy_type>
 		<damage>20</damage>
+		<damage_res>Effect/test_fireball</damage_res>
+		<damage_time>2</damage_time>
+		<damage_fly>true</damage_fly>
+	</Skill>
+	<Skill>
+		<id>3</id>
+		<release_time>0.6</release_time>
+		<type>1</type>
+		<enemy_type>0</enemy_type>
+		<damage>10</damage>
 	</Skill>
 </Root>

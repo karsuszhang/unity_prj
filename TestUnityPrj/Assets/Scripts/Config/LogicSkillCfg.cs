@@ -10,6 +10,9 @@ public class LogicSkillData
 	public int EnemyNum = 0;
 	public int Damage = 0;
 	public float ReleaseTime = 0f;
+	public float DamageTime = 0f;
+	public bool FlyDamage = false;
+	public string DamageRes;
 
 	public InGameLogic.SkillData ToSkillData()
 	{
@@ -18,7 +21,13 @@ public class LogicSkillData
 		sd.ReleaseTime = this.ReleaseTime;
 		sd.Type = (InGameLogic.SkillType)this.Type;
 		sd.EnemyNum = (InGameLogic.EnemyType)this.EnemyNum;
-		sd.Damage = this.Damage;
+
+		sd.DamageData = new InGameLogic.DamageData ();
+		sd.DamageData.damage = this.Damage;
+		sd.DamageData.flytime = this.DamageTime;
+		sd.DamageData.fly_able = this.FlyDamage;
+		sd.DamageData.res = this.DamageRes;
+		sd.DamageData.IsDamage = sd.Type == InGameLogic.SkillType.Damage;
 
 		return sd;
 	}
@@ -77,6 +86,18 @@ public class LogicSkillCfg : ConfigBase
 					else if(attr.Name == "damage")
 					{
 						data.Damage = int.Parse(attr.InnerText);
+					}
+					else if(attr.Name == "damage_res")
+					{
+						data.DamageRes = attr.InnerText;
+					}
+					else if(attr.Name == "damage_time")
+					{
+						data.DamageTime = float.Parse(attr.InnerText);
+					}
+					else if(attr.Name == "damage_fly")
+					{
+						data.FlyDamage = bool.Parse(attr.InnerText);
 					}
 				}
 

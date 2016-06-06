@@ -6,8 +6,9 @@ using CommonUtil;
 
 public class ClientGame : MonoBehaviour 
 {
-
+	public LogicGame LogicGame{get{return m_Game; }}
 	LogicGame m_Game;
+
 	InputMng m_InputMng = new InputMng();
 	List<UnitObject> m_ClientObjects = new List<UnitObject>();
 	Dictionary<StandPos, int> m_StandPos = new Dictionary<StandPos, int>();
@@ -21,12 +22,15 @@ public class ClientGame : MonoBehaviour
 	TweenScale m_ComboLabel;
 	GameObject m_AttUp;
 	GameObject m_MFUp;
+
+	ClientDamageMng m_DamageObjMng = new ClientDamageMng();
 	// Use this for initialization
 	void Start () {
 		InitLogicGame ();
 		InitClientObj ();
 
 		InitUI ();
+        m_DamageObjMng.Init();
 		m_InputMng.AddHandler (OnInput);
 	}
 	
@@ -35,7 +39,7 @@ public class ClientGame : MonoBehaviour
 		m_InputMng.Update ();
 		m_Game.Update (MathTool.Second2MilliSec(Time.deltaTime));
 	
-
+		#region update clientobj
 		foreach (UnitObject uo in m_ClientObjects) {
 			uo.Update ();
 			if (uo.ReleaseInstantly)
@@ -48,6 +52,9 @@ public class ClientGame : MonoBehaviour
 		}
 
 		m_DeadObjs.Clear ();
+		#endregion
+
+		m_DamageObjMng.Update ();
 	}
 
 	void OnDestory()
@@ -220,4 +227,15 @@ public class ClientGame : MonoBehaviour
 	{
 		m_ComboLabel.gameObject.SetActive (false);
 	}
+
+    public UnitObject FindUnit(BattleUnit bu)
+    {
+        foreach(UnitObject uo in m_ClientObjects)
+        {
+            if (uo.LogicUnit == bu)
+                return uo;
+        }
+
+        return null;
+    }
 }

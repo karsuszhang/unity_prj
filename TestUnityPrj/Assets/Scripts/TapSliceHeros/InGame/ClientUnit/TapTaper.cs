@@ -3,6 +3,7 @@ using System.Collections;
 using CommonUtil;
 
 public delegate void TapFull(TapTaper t);
+public delegate void TapOnce();
 
 public enum TapType
 {
@@ -15,9 +16,9 @@ public class TapTaper : MonoBehaviour {
 	public TapType Type = TapType.Empower;
 	public int TapOkCount = 5;
 	public TapFull TapOKCB = null;
+	public TapOnce TapOnceHandler = null;
 
 	private int m_TapCount = 0;
-	private UnitObject m_Unit = null;
 	private UISprite m_TapProgress = null;
 
 	public int Group = 1;
@@ -41,11 +42,6 @@ public class TapTaper : MonoBehaviour {
 	{
 		if (m_TapProgress != null)
 			CommonUtil.ResourceMng.Instance.Release (m_TapProgress.gameObject);
-	}
-
-	public void Init(UnitObject uo)
-	{
-		m_Unit = uo;
 	}
 
 	void OnEnable()
@@ -104,12 +100,8 @@ public class TapTaper : MonoBehaviour {
 				ShowProgress (false);
 			}
 		} else if (Type == TapType.Hurt) {
-			if (m_Unit == null) {
-				CommonUtil.CommonLogger.LogError ("Taper " + this.gameObject.name + " has no UnitObj");
-				return;
-			}
-
-			m_Unit.LogicUnit.OnDamage (GameHelper.Game.GetTapDamage (), null);
+			if (TapOnceHandler != null)
+				TapOnceHandler ();
 		}
 	}
 

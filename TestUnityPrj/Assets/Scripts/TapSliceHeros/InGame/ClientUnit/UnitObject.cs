@@ -50,6 +50,12 @@ public class TaperGroup
 
 public class UnitObject{
 
+    public enum SpecialPosType
+    {
+        HitPos,
+        FirePos,
+    }
+
 	public BattleUnit LogicUnit
 	{
 		get{ return m_BattleUnit; }
@@ -233,7 +239,7 @@ public class UnitObject{
 	{
 		TapTaper[] taps = m_ModelObj.GetComponentsInChildren<TapTaper> ();
 		foreach (TapTaper t in taps) {
-			t.Init (this);
+			t.TapOnceHandler = this.OnTapDirectly;
 			t.gameObject.SetActive (false);
 			TaperGroup tg = FindTapGroup (t.Type, t.Group);
 			if (tg != null)
@@ -332,4 +338,23 @@ public class UnitObject{
 
 		m_BloodBar.gameObject.transform.localPosition = GetBloodPointPos ();
 	}
+
+	void OnTapDirectly()
+	{
+		this.LogicUnit.OnDamage (GameHelper.Game.GetTapDamage (), null);
+	}
+
+    public Vector3 GetSpecialPos(SpecialPosType type)
+    {
+        switch (type)
+        {
+            case SpecialPosType.FirePos:
+                return m_ModelObj.transform.position;
+            case SpecialPosType.HitPos:
+                return m_ModelObj.transform.position;
+        }
+
+        CommonLogger.LogError("Asking unexist UnitPos " + type.ToString());
+        return Vector3.zero;
+    }
 }

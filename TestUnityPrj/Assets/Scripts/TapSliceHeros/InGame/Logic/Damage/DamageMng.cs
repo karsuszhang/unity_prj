@@ -3,7 +3,10 @@ using System.Collections;
 
 namespace InGameLogic
 {
+	public delegate void DamageGenerated(Damage d);
 	public class DamageMng{
+
+		public event DamageGenerated OnDamageGen;
 
 		List<Damage> m_Damages = new List<Damage> ();
 		public DamageMng()
@@ -31,6 +34,8 @@ namespace InGameLogic
 			}
 
 			m_Damages.Add (d);
+			if (OnDamageGen != null)
+				OnDamageGen (d);
 		}
 	}
 }
