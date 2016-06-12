@@ -11,7 +11,10 @@ namespace InGameLogic
 	}
 	public abstract class UnitState{
 		public UnitStateType Type { get; private set; }
+        public float CurStateTime { get { return m_StateTime; } }
+
 		protected BattleUnit m_Unit { get; private set; }
+        protected float m_StateTime = 0f;
 
 		public UnitState(UnitStateType type, BattleUnit unit)
 		{
@@ -32,6 +35,16 @@ namespace InGameLogic
 		{
 			m_Unit.LeaveState (Type);
 		}
+
+        public virtual float GetTotalTime()
+        {
+            return 0f;
+        }
+
+        public virtual void SpeedUpTime()
+        {
+            m_StateTime += 0.1f * GetTotalTime();
+        }
 
 		public static UnitState CreateState(UnitStateType type, BattleUnit bu)
 		{

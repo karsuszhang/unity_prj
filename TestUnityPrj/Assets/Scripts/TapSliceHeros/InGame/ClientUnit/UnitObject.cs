@@ -111,6 +111,7 @@ public class UnitObject{
 			m_ModelObj.transform.localRotation = p.transform.localRotation;
 			GameHelper.Game.OccupyStandPos (p, bu.OrgData.unit_id);
 			m_StandPos = p;
+            m_StandPos.SetTapHero(this);
 		}
 
 		InitTaps ();
@@ -356,5 +357,10 @@ public class UnitObject{
 
         CommonLogger.LogError("Asking unexist UnitPos " + type.ToString());
         return Vector3.zero;
+    }
+
+    public void OuterTaper()
+    {
+        m_BattleUnit.Tap();
     }
 }

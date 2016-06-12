@@ -18,7 +18,6 @@ namespace InGameLogic
 
 		private bool _EmpowerDone;
 
-		float m_StateTime = 0f;
 		public UnitStateEmpower(BattleUnit bu) : base(UnitStateType.Empowering, bu)
 		{
 		}
@@ -52,6 +51,10 @@ namespace InGameLogic
 				}
 			}
 		}
-			
+		
+        public override float GetTotalTime()
+        {
+            return m_Unit.OrgData.empower_time;
+        }
 	}
 }

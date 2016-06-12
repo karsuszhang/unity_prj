@@ -203,7 +203,20 @@ namespace InGameLogic
 		{
 			int index = Game.Random (0, m_Skills.Count - 1);
 			return m_Skills [index];
-
 		}
+
+        public void Tap()
+        {
+            if (CurState == null || CurState.Type == UnitStateType.Rest)
+                return;
+
+            if (CurState.Type != UnitStateType.Empowering)
+            {
+                CurState.SpeedUpTime();
+            }
+            else
+            {
+            }
+        }
 	}
 }

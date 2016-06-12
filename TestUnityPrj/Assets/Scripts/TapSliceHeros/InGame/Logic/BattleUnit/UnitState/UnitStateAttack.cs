@@ -5,7 +5,7 @@ namespace InGameLogic
 {
 	public class UnitStateAttack : UnitState{
 
-		float m_StateTime = 0f;
+		
 		Skill m_UseSkill = null;
 		public UnitStateAttack(BattleUnit bu):base(UnitStateType.Attack, bu)
 		{
@@ -37,6 +37,9 @@ namespace InGameLogic
 				m_Unit.GoToState (UnitStateType.Idle);
 		}
 
-
+        public override float GetTotalTime()
+        {
+            return m_Unit.OrgData.attack_time;
+        }
 	}
 }

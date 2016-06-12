@@ -53,5 +53,10 @@ namespace InGameLogic
 				IsOver = true;
 			}
 		}
+
+        public void ExternTapOK()
+        {
+            IsOver = true;
+        }
 	}
 }

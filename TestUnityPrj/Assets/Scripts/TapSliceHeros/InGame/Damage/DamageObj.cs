@@ -40,9 +40,21 @@ public class DamageObj
 
             m_FromPos = GameHelper.Game.FindUnit(d.Attacker).GetSpecialPos(UnitObject.SpecialPosType.FirePos);
             m_DestPos = GameHelper.Game.FindUnit(d.Receiver).GetSpecialPos(UnitObject.SpecialPosType.HitPos);
+
+            TapTaper t = m_DamageEffect.GetComponent<TapTaper>();
+            if (t != null)
+            {
+                t.TapOKCB = this.OnTapFull;
+                t.enabled = true;
+            }
         }
 		
 	}
+
+    private void OnTapFull(TapTaper t)
+    {
+        this.m_LogicDamage.ExternTapOK();
+    }
 
 	public void Update()
 	{
