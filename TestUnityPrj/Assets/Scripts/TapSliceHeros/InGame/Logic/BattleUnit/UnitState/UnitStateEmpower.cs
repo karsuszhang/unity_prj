@@ -56,5 +56,10 @@ namespace InGameLogic
         {
             return m_Unit.OrgData.empower_time;
         }
+
+        public void End()
+        {
+            m_StateTime = m_Unit.OrgData.empower_time;
+        }
 	}
 }

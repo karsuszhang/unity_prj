@@ -78,6 +78,8 @@ public class UnitObject{
 	protected TaperGroup m_CurDamageGroup = null;
 
 	protected BloodBar m_BloodBar = null;
+    protected UIProgressBar m_StateProgress = null;
+    protected UIProgressBar m_EmpowerProgress = null;
 
 	protected float m_DeadTimeCount = 0f;
 
@@ -117,6 +119,9 @@ public class UnitObject{
 		InitTaps ();
 
 		m_BloodBar = (UIManager.Instance.AddUI ("UI/BloodBar") as GameObject).GetComponent<BloodBar>();
+        m_StateProgress = (UIManager.Instance.AddUI("UI/StateProgressBar") as GameObject).GetComponent<UIProgressBar>();
+        m_EmpowerProgress = (UIManager.Instance.AddUI("UI/EmpowerProgressBar") as GameObject).GetComponent<UIProgressBar>();
+        CheckStateProgressBarShow();
 		UpdateBloodBarPos ();
 	}
 
@@ -177,6 +182,8 @@ public class UnitObject{
 				break;
 			}
 		}
+
+        CheckStateProgressBarShow();
 	}
 
 	void OnStateLeave(UnitStateType type)
@@ -338,6 +345,16 @@ public class UnitObject{
 			return;
 
 		m_BloodBar.gameObject.transform.localPosition = GetBloodPointPos ();
+        m_StateProgress.gameObject.transform.localPosition = m_BloodBar.gameObject.transform.localPosition + new Vector3(0f, 40f, 0f);
+        m_EmpowerProgress.gameObject.transform.localPosition = m_BloodBar.gameObject.transform.localPosition + new Vector3(-80, -80, 0f);
+        if (m_StateProgress.gameObject.activeSelf)
+        {
+            m_StateProgress.value = m_BattleUnit.GetStatePercentLeft();
+        }
+        if (m_EmpowerProgress.gameObject.activeSelf)
+        {
+            m_EmpowerProgress.value = m_BattleUnit.GetStatePercentLeft();
+        }
 	}
 
 	void OnTapDirectly()
@@ -362,5 +379,13 @@ public class UnitObject{
     public void OuterTaper()
     {
         m_BattleUnit.Tap();
+    }
+
+    protected void CheckStateProgressBarShow()
+    {
+        bool show_state_progress = (m_BattleUnit.CurState.Type == UnitStateType.Idle) || (!m_BattleUnit.IsPlayerSide && m_BattleUnit.CurState.Type == UnitStateType.Empowering);
+        m_StateProgress.gameObject.SetActive(show_state_progress);
+
+        m_EmpowerProgress.gameObject.SetActive(m_BattleUnit.IsPlayerSide && m_BattleUnit.CurState.Type == UnitStateType.Empowering);
     }
 }

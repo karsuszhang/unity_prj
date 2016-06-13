@@ -24,6 +24,9 @@ namespace InGameLogic
 
 	public class BattleUnit 
 	{
+        const int TapEmpower = 5;
+        private int m_CurEmpowerTap = 0;
+
 		protected LogicGame m_Game = null;
 		protected UnitData m_OrgData;
 
@@ -136,6 +139,8 @@ namespace InGameLogic
 
 			m_CurState = m_States [type];
 			m_CurState.EnterState ();
+
+            m_CurEmpowerTap = 0;
 		}
 
 		void InitStates()
@@ -185,6 +190,8 @@ namespace InGameLogic
 			if (CurState.Type == UnitStateType.Empowering) {
 				UnitStateEmpower ue = CurState as UnitStateEmpower;
 				ue.EmpowerDone = true;
+                if (IsPlayerSide)
+                    ue.End();
 			}
 		}
 
@@ -207,7 +214,7 @@ namespace InGameLogic
 
         public void Tap()
         {
-            if (CurState == null || CurState.Type == UnitStateType.Rest)
+            if (CurState == null || CurState.Type == UnitStateType.Rest || CurState.Type == UnitStateType.Attack)
                 return;
 
             if (CurState.Type != UnitStateType.Empowering)
@@ -216,7 +223,26 @@ namespace InGameLogic
             }
             else
             {
+                m_CurEmpowerTap++;
+                if (m_CurEmpowerTap >= TapEmpower)
+                    EmpowerOK();
             }
+        }
+
+        public float GetStatePercentLeft()
+        {
+            if (CurState == null || CurState.Type == UnitStateType.Rest)
+                return 1f;
+
+            if (IsPlayerSide)
+            {
+                if (CurState.Type != UnitStateType.Empowering)
+                    return 1f - CurState.CurStateTime / CurState.GetTotalTime();
+                else
+                    return System.Math.Min(1f, (float)m_CurEmpowerTap / TapEmpower);
+            }
+            else
+                return 1f - CurState.CurStateTime / CurState.GetTotalTime();
         }
 	}
 }
